@@ -13,8 +13,10 @@
 @protocol CBConnectionDelegate <NSObject>
 
 @required
+
 //找到外设
 -(void)didFindPeripheral:(CBPeripheral *)peripheral;
+
 //成功连接连接到外设
 -(void)didConnectedPeripheral;
 
@@ -22,11 +24,16 @@
 
 @protocol ASConnectionDelegate <NSObject>
 
-@optional
-//连接到asyncSocket
--(void)didConnectedAsyncSocket;
+@required
 //从socket中读取数据
 -(void)didReadData:(NSData *)data;
+
+@optional
+#pragma mark - ChoosePlayerController必须实现
+//连接到asyncSocket
+-(void)didConnectedAsyncSocket;
+
+#pragma mark - CommunicationController必须实现
 //向另一方发送数据
 -(void)didSendData:(NSString *)data FromPeripheral:(CBPeripheral *)peripheral;
 
