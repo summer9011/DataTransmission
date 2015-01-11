@@ -20,6 +20,8 @@
 		6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */; };
 		6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */; };
 		6EE06D871A611CA3003CDF38 /* CommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D861A611CA3003CDF38 /* CommunicationController.m */; };
+		6EE472391A623AB20046287F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472361A623AB20046287F /* AsyncSocket.m */; };
+		6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472381A623AB20046287F /* AsyncUdpSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,11 @@
 		6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePlayerController.m; sourceTree = "<group>"; };
 		6EE06D851A611CA3003CDF38 /* CommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationController.h; sourceTree = "<group>"; };
 		6EE06D861A611CA3003CDF38 /* CommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationController.m; sourceTree = "<group>"; };
+		6EE06D8B1A614C87003CDF38 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		6EE472351A623AB20046287F /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		6EE472361A623AB20046287F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		6EE472371A623AB20046287F /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
+		6EE472381A623AB20046287F /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,11 +127,13 @@
 		6ECEBD321A3DD029005A9250 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6EE4723B1A623ABF0046287F /* CocoaAsyncSocket */,
 				6ECEBD5F1A3DDB63005A9250 /* AVFoundation.framework */,
 				6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */,
 				6ECEBD5B1A3DDB44005A9250 /* CoreAudio.framework */,
 				6ECEBD331A3DD029005A9250 /* Info.plist */,
 				6ECEBD341A3DD029005A9250 /* main.m */,
+				6EE06D8B1A614C87003CDF38 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -144,6 +153,17 @@
 				6ECEBD4D1A3DD029005A9250 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6EE4723B1A623ABF0046287F /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				6EE472351A623AB20046287F /* AsyncSocket.h */,
+				6EE472361A623AB20046287F /* AsyncSocket.m */,
+				6EE472371A623AB20046287F /* AsyncUdpSocket.h */,
+				6EE472381A623AB20046287F /* AsyncUdpSocket.m */,
+			);
+			name = CocoaAsyncSocket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,9 +275,11 @@
 				6EE06D7E1A61161C003CDF38 /* ChooseHardWareController.m in Sources */,
 				6ECEBD381A3DD029005A9250 /* AppDelegate.m in Sources */,
 				6EE06D871A611CA3003CDF38 /* CommunicationController.m in Sources */,
+				6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */,
 				6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */,
 				6ECEBD351A3DD029005A9250 /* main.m in Sources */,
 				6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */,
+				6EE472391A623AB20046287F /* AsyncSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +405,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MIDIDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = MIDIDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -396,6 +420,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MIDIDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = MIDIDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
