@@ -74,6 +74,8 @@
                 self.msgView.text=dic[@"msg"];
             }else{
                 self.msgView.text=[NSString stringWithFormat:@"%@,%@",oldStr,dic[@"msg"]];
+                
+                [self.dele playSound:dic[@"msg"]];
             }
             
         }

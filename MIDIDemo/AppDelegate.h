@@ -54,6 +54,8 @@
 @property (nonatomic,strong) NSMutableArray *recevierList;
 @property (nonatomic,strong) NSTimer *heartBeatTimer;
 
+//播放音效
+-(void)playSound:(NSString *)latter;
 
 @end
 

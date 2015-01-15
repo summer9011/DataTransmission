@@ -13,15 +13,18 @@
 		6ECEBD401A3DD029005A9250 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ECEBD3F1A3DD029005A9250 /* Images.xcassets */; };
 		6ECEBD431A3DD029005A9250 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */; };
 		6ECEBD4F1A3DD029005A9250 /* MIDIDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEBD4E1A3DD029005A9250 /* MIDIDemoTests.m */; };
-		6ECEBD5C1A3DDB44005A9250 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECEBD5B1A3DDB44005A9250 /* CoreAudio.framework */; };
 		6ECEBD5E1A3DDB50005A9250 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */; };
-		6ECEBD601A3DDB63005A9250 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECEBD5F1A3DDB63005A9250 /* AVFoundation.framework */; };
 		6EE06D7E1A61161C003CDF38 /* ChooseHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */; };
 		6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */; };
 		6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */; };
 		6EE06D871A611CA3003CDF38 /* CommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D861A611CA3003CDF38 /* CommunicationController.m */; };
 		6EE472391A623AB20046287F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472361A623AB20046287F /* AsyncSocket.m */; };
 		6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472381A623AB20046287F /* AsyncUdpSocket.m */; };
+		6EF2B7461A67F51600D93862 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF2B7451A67F51600D93862 /* AudioToolbox.framework */; };
+		6EF2B74B1A67F58100D93862 /* A.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B7471A67F58100D93862 /* A.wav */; };
+		6EF2B74C1A67F58100D93862 /* B.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B7481A67F58100D93862 /* B.wav */; };
+		6EF2B74D1A67F58100D93862 /* C.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B7491A67F58100D93862 /* C.wav */; };
+		6EF2B74E1A67F58100D93862 /* D.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B74A1A67F58100D93862 /* D.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,11 @@
 		6EE472361A623AB20046287F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		6EE472371A623AB20046287F /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
 		6EE472381A623AB20046287F /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
+		6EF2B7451A67F51600D93862 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6EF2B7471A67F58100D93862 /* A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A.wav; sourceTree = "<group>"; };
+		6EF2B7481A67F58100D93862 /* B.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = B.wav; sourceTree = "<group>"; };
+		6EF2B7491A67F58100D93862 /* C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = C.wav; sourceTree = "<group>"; };
+		6EF2B74A1A67F58100D93862 /* D.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = D.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ECEBD601A3DDB63005A9250 /* AVFoundation.framework in Frameworks */,
+				6EF2B7461A67F51600D93862 /* AudioToolbox.framework in Frameworks */,
 				6ECEBD5E1A3DDB50005A9250 /* CoreMIDI.framework in Frameworks */,
-				6ECEBD5C1A3DDB44005A9250 /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +134,11 @@
 		6ECEBD321A3DD029005A9250 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6EF2B7451A67F51600D93862 /* AudioToolbox.framework */,
+				6EF2B7471A67F58100D93862 /* A.wav */,
+				6EF2B7481A67F58100D93862 /* B.wav */,
+				6EF2B7491A67F58100D93862 /* C.wav */,
+				6EF2B74A1A67F58100D93862 /* D.wav */,
 				6EE4723B1A623ABF0046287F /* CocoaAsyncSocket */,
 				6ECEBD5F1A3DDB63005A9250 /* AVFoundation.framework */,
 				6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */,
@@ -252,8 +264,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EF2B74C1A67F58100D93862 /* B.wav in Resources */,
+				6EF2B74B1A67F58100D93862 /* A.wav in Resources */,
 				6ECEBD3E1A3DD029005A9250 /* Main.storyboard in Resources */,
+				6EF2B74E1A67F58100D93862 /* D.wav in Resources */,
 				6ECEBD431A3DD029005A9250 /* LaunchScreen.xib in Resources */,
+				6EF2B74D1A67F58100D93862 /* C.wav in Resources */,
 				6ECEBD401A3DD029005A9250 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
