@@ -22,6 +22,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.recevierList=[NSMutableArray array];
     
+    //设置应用保持常亮
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
     return YES;
 }
 
@@ -72,8 +75,7 @@
             break;
             
         default:{
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"打开蓝牙后重试" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-            [alert show];
+            NSLog(@"打开蓝牙后重试");
         }
             break;
     }

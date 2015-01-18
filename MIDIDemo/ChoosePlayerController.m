@@ -128,41 +128,48 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
 }
 
 -(void)didReadData:(NSData *)data {
-    
     NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"ChoosePlayerController %@",str);
+    NSArray *tempArr=[str componentsSeparatedByString:@"\n"];
     
-    NSError *error;
-    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+    NSMutableArray *strArr=[tempArr mutableCopy];
+    [strArr removeLastObject];
     
-    switch ([dic[@"code"] intValue]) {
-        case 1:             //获取欢迎
-            self.dele.ownerID=dic[@"currentid"];
-            
-            break;
-        case 2:{            //获取用户列表
-            dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
-            NSArray *arr=[NSJSONSerialization JSONObjectWithData:[dic[@"msg"] dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-            
-            [self.playerArr removeAllObjects];
-            [self.playerArr addObjectsFromArray:arr];
-            
-            [self.table reloadData];
-        }
-            break;
-        case 4:{            //建立聊天窗口
-            if (dic[@"from"]) {
-                [self.dele.recevierList removeAllObjects];
-                [self.dele.recevierList addObject:[NSString stringWithFormat:@"%@",dic[@"from"]]];
+    for (NSString *str in strArr) {
+        NSLog(@"%@",str);
+        
+        NSError *error;
+        NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+        
+        switch ([dic[@"code"] intValue]) {
+            case 1:             //获取欢迎
+                self.dele.ownerID=dic[@"currentid"];
+                
+                break;
+            case 2:{            //获取用户列表
+                dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+                NSArray *arr=[NSJSONSerialization JSONObjectWithData:[dic[@"msg"] dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+                
+                [self.playerArr removeAllObjects];
+                [self.playerArr addObjectsFromArray:arr];
+                
+                [self.table reloadData];
             }
-            
-            UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            CommunicationController *communicationVC=[story instantiateViewControllerWithIdentifier:@"CommunicationVC"];
-            
-            [self.navigationController pushViewController:communicationVC animated:YES];
+                break;
+            case 4:{            //建立聊天窗口
+                if (dic[@"from"]) {
+                    [self.dele.recevierList removeAllObjects];
+                    [self.dele.recevierList addObject:[NSString stringWithFormat:@"%@",dic[@"from"]]];
+                }
+                
+                UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                CommunicationController *communicationVC=[story instantiateViewControllerWithIdentifier:@"CommunicationVC"];
+                
+                [self.navigationController pushViewController:communicationVC animated:YES];
+            }
+                break;
         }
-            break;
     }
+    
 }
 
 @end

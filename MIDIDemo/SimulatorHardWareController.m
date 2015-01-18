@@ -38,8 +38,15 @@
 - (IBAction)sendData:(id)sender {
     UIButton *button=(UIButton *)sender;
     
-    NSString *str=[NSString stringWithFormat:@"%@",button.titleLabel.text];
-    [self.peripheralManager updateValue:[str dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.customCharacteristic onSubscribedCentrals:@[self.receiverCentral]];
+    //记录点击时间
+    NSDate *current=[NSDate date];
+    
+    if (self.receiverCentral) {
+        NSString *str=[NSString stringWithFormat:@"%@,%f",button.titleLabel.text,current.timeIntervalSince1970];
+        [self.peripheralManager updateValue:[str dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.customCharacteristic onSubscribedCentrals:@[self.receiverCentral]];
+    }else{
+        NSLog(@"连接中心后重试");
+    }
 }
 
 -(void)setupService {
@@ -65,8 +72,7 @@
             break;
             
         default:{
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"打开蓝牙后重试" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-            [alert show];
+            NSLog(@"打开蓝牙后重试");
         }
             break;
     }

@@ -49,9 +49,7 @@
 		6ECEBD481A3DD029005A9250 /* MIDIDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIDIDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECEBD4D1A3DD029005A9250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECEBD4E1A3DD029005A9250 /* MIDIDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIDIDemoTests.m; sourceTree = "<group>"; };
-		6ECEBD5B1A3DDB44005A9250 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
-		6ECEBD5F1A3DDB63005A9250 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseHardWareController.h; sourceTree = "<group>"; };
 		6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseHardWareController.m; sourceTree = "<group>"; };
 		6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorHardWareController.h; sourceTree = "<group>"; };
@@ -113,6 +111,7 @@
 		6ECEBD311A3DD029005A9250 /* MIDIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				6ECEDB191A693C630036C384 /* 第三方库 */,
 				6ECEBD361A3DD029005A9250 /* AppDelegate.h */,
 				6ECEBD371A3DD029005A9250 /* AppDelegate.m */,
 				6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */,
@@ -126,6 +125,7 @@
 				6ECEBD3C1A3DD029005A9250 /* Main.storyboard */,
 				6ECEBD3F1A3DD029005A9250 /* Images.xcassets */,
 				6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */,
+				6ECEDB171A693C450036C384 /* 音色库 */,
 				6ECEBD321A3DD029005A9250 /* Supporting Files */,
 			);
 			path = MIDIDemo;
@@ -135,14 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				6EF2B7451A67F51600D93862 /* AudioToolbox.framework */,
-				6EF2B7471A67F58100D93862 /* A.wav */,
-				6EF2B7481A67F58100D93862 /* B.wav */,
-				6EF2B7491A67F58100D93862 /* C.wav */,
-				6EF2B74A1A67F58100D93862 /* D.wav */,
-				6EE4723B1A623ABF0046287F /* CocoaAsyncSocket */,
-				6ECEBD5F1A3DDB63005A9250 /* AVFoundation.framework */,
 				6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */,
-				6ECEBD5B1A3DDB44005A9250 /* CoreAudio.framework */,
 				6ECEBD331A3DD029005A9250 /* Info.plist */,
 				6ECEBD341A3DD029005A9250 /* main.m */,
 				6EE06D8B1A614C87003CDF38 /* PrefixHeader.pch */,
@@ -165,6 +158,33 @@
 				6ECEBD4D1A3DD029005A9250 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6ECEDB171A693C450036C384 /* 音色库 */ = {
+			isa = PBXGroup;
+			children = (
+				6ECEDB181A693C4E0036C384 /* 测试 */,
+			);
+			name = "音色库";
+			sourceTree = "<group>";
+		};
+		6ECEDB181A693C4E0036C384 /* 测试 */ = {
+			isa = PBXGroup;
+			children = (
+				6EF2B7471A67F58100D93862 /* A.wav */,
+				6EF2B7481A67F58100D93862 /* B.wav */,
+				6EF2B7491A67F58100D93862 /* C.wav */,
+				6EF2B74A1A67F58100D93862 /* D.wav */,
+			);
+			name = "测试";
+			sourceTree = "<group>";
+		};
+		6ECEDB191A693C630036C384 /* 第三方库 */ = {
+			isa = PBXGroup;
+			children = (
+				6EE4723B1A623ABF0046287F /* CocoaAsyncSocket */,
+			);
+			name = "第三方库";
 			sourceTree = "<group>";
 		};
 		6EE4723B1A623ABF0046287F /* CocoaAsyncSocket */ = {
@@ -229,6 +249,9 @@
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = RSXSFANAY7;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InterAppAudio = {
 								enabled = 0;
 							};

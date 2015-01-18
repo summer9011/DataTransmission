@@ -62,39 +62,50 @@
 
 -(void)didReadData:(NSData *)data {
     NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"CommunicationController %@",str);
+    NSArray *tempArr=[str componentsSeparatedByString:@"\n"];
     
-    NSError *error;
-    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+    NSMutableArray *strArr=[tempArr mutableCopy];
+    [strArr removeLastObject];
     
-    switch ([dic[@"code"] intValue]) {
-        case 5:{            //发送数据
-            NSString *oldStr=self.msgView.text;
-            if ([oldStr isEqualToString:@""]) {
-                self.msgView.text=dic[@"msg"];
-            }else{
-                self.msgView.text=[NSString stringWithFormat:@"%@,%@",oldStr,dic[@"msg"]];
+    for (NSString *str in strArr) {
+        NSLog(@"%@",str);
+        
+        NSError *error;
+        NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+        
+        switch ([dic[@"code"] intValue]) {
+            case 5:{            //发送数据
+                NSDate *current=[NSDate date];
+                double diff=current.timeIntervalSince1970-[dic[@"clickTime"] doubleValue];
                 
+                NSString *oldStr=self.msgView.text;
+                if ([oldStr isEqualToString:@""]) {
+                    self.msgView.text=[NSString stringWithFormat:@"(%@,%f)",dic[@"msg"],diff];
+                }else{
+                    self.msgView.text=[NSString stringWithFormat:@"%@;(%@,%f)",oldStr,dic[@"msg"],diff];
+                }
                 [self.dele playSound:dic[@"msg"]];
+                
             }
-            
-        }
-            break;
-        case 6:{            //一方退出
-            if (dic[@"clientid"]) {
-                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"ID:%@ 已退出",dic[@"clientid"]] message:@"队友都走了，你还留着干什么？" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-                [alert show];
+                break;
+            case 6:{            //一方退出
+                if (dic[@"clientid"]) {
+                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"ID:%@ 已退出",dic[@"clientid"]] message:@"队友都走了，你还留着干什么？" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
+                
             }
-            
+                break;
         }
-            break;
     }
 }
 
 -(void)didSendData:(NSString *)data FromPeripheral:(CBPeripheral *)peripheral {
-    NSLog(@"sendData");
+    NSLog(@"sendData %@",data);
     
-    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}\n",5,data,[self.dele.recevierList[0] intValue]];
+    NSArray *subArr=[data componentsSeparatedByString:@","];
+    
+    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d,\"clickTime\":%f}\n",5,subArr[0],[self.dele.recevierList[0] intValue],[subArr[1] doubleValue]];
     NSData *strData=[str dataUsingEncoding:NSUTF8StringEncoding];
     
     [self.dele.asyncSocket writeData:strData withTimeout:-1 tag:5];
