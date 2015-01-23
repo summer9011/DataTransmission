@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-5" y="463"/>
         </scene>
-        <!--选择硬件设备-->
+        <!--连接到钢琴-->
         <scene sceneID="1si-Ro-aYg">
             <objects>
                 <viewController id="HtJ-91-FbB" customClass="ChooseHardWareController" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
                             <constraint firstItem="moj-Jo-feX" firstAttribute="top" secondItem="4nL-J7-z5Z" secondAttribute="bottom" constant="10" id="zlv-JA-z8b"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="选择硬件设备" id="qcL-Zd-QIK"/>
+                    <navigationItem key="navigationItem" title="连接到钢琴" id="qcL-Zd-QIK"/>
                     <connections>
                         <outlet property="table" destination="moj-Jo-feX" id="ezB-49-UUO"/>
                     </connections>
@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="699" y="463"/>
         </scene>
-        <!--选择玩家-->
+        <!--用户列表-->
         <scene sceneID="dZ5-pc-wOt">
             <objects>
-                <viewController storyboardIdentifier="ChoosePlayerVC" title="选择玩家" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U2T-3Y-Qht" customClass="ChoosePlayerController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChoosePlayerVC" title="用户列表" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U2T-3Y-Qht" customClass="ChoosePlayerController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H42-ik-aIb"/>
                         <viewControllerLayoutGuide type="bottom" id="MJu-ba-0Zo"/>
