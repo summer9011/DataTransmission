@@ -27,8 +27,8 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     //读取MIDI文件
-    NSString *path=[[NSBundle mainBundle] pathForResource:@"clap" ofType:@"mid"];
-    [ReadMini readMIDIFile:path];
+//    NSString *path=[[NSBundle mainBundle] pathForResource:@"clap" ofType:@"mid"];
+//    [ReadMini readMIDIFile:path];
     
     return YES;
 }

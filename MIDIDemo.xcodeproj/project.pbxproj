@@ -26,6 +26,10 @@
 		6EE2F3221A7275EC004E4680 /* libfmod_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BD1A7275EC004E4680 /* libfmod_iphonesimulator.a */; };
 		6EE2F3231A7275EC004E4680 /* libfmodL_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BE1A7275EC004E4680 /* libfmodL_iphoneos.a */; };
 		6EE2F3241A7275EC004E4680 /* libfmodL_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BF1A7275EC004E4680 /* libfmodL_iphonesimulator.a */; };
+		6EE2F3851A727805004E4680 /* MIDIPlayController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2F3841A727805004E4680 /* MIDIPlayController.mm */; };
+		6EE2F4BF1A728376004E4680 /* hat.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2F4BE1A728376004E4680 /* hat.mid */; };
+		6EE2F4C11A728A30004E4680 /* gs_instruments.dls in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2F4C01A728A30004E4680 /* gs_instruments.dls */; };
+		6EE2F4C31A728D8F004E4680 /* 1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2F4C21A728D8F004E4680 /* 1.mid */; };
 		6EE472391A623AB20046287F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472361A623AB20046287F /* AsyncSocket.m */; };
 		6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472381A623AB20046287F /* AsyncUdpSocket.m */; };
 		6EF2B7461A67F51600D93862 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF2B7451A67F51600D93862 /* AudioToolbox.framework */; };
@@ -74,7 +78,6 @@
 		6EE06D851A611CA3003CDF38 /* CommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationController.h; sourceTree = "<group>"; };
 		6EE06D861A611CA3003CDF38 /* CommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationController.m; sourceTree = "<group>"; };
 		6EE06D8B1A614C87003CDF38 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		6EE2F2491A726FC3004E4680 /* gm.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gm.dls; sourceTree = "<group>"; };
 		6EE2F2B21A7275EC004E4680 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod.h; sourceTree = "<group>"; };
 		6EE2F2B31A7275EC004E4680 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fmod.hpp; sourceTree = "<group>"; };
 		6EE2F2B41A7275EC004E4680 /* fmod_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_codec.h; sourceTree = "<group>"; };
@@ -88,6 +91,11 @@
 		6EE2F2BD1A7275EC004E4680 /* libfmod_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmod_iphonesimulator.a; sourceTree = "<group>"; };
 		6EE2F2BE1A7275EC004E4680 /* libfmodL_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmodL_iphoneos.a; sourceTree = "<group>"; };
 		6EE2F2BF1A7275EC004E4680 /* libfmodL_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmodL_iphonesimulator.a; sourceTree = "<group>"; };
+		6EE2F3831A727805004E4680 /* MIDIPlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIPlayController.h; sourceTree = "<group>"; };
+		6EE2F3841A727805004E4680 /* MIDIPlayController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MIDIPlayController.mm; sourceTree = "<group>"; };
+		6EE2F4BE1A728376004E4680 /* hat.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = hat.mid; sourceTree = "<group>"; };
+		6EE2F4C01A728A30004E4680 /* gs_instruments.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_instruments.dls; sourceTree = "<group>"; };
+		6EE2F4C21A728D8F004E4680 /* 1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 1.mid; sourceTree = "<group>"; };
 		6EE472351A623AB20046287F /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		6EE472361A623AB20046287F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		6EE472371A623AB20046287F /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
@@ -161,6 +169,8 @@
 				6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */,
 				6ECEDB171A693C450036C384 /* 音色库 */,
 				6ECEBD321A3DD029005A9250 /* Supporting Files */,
+				6EE2F3831A727805004E4680 /* MIDIPlayController.h */,
+				6EE2F3841A727805004E4680 /* MIDIPlayController.mm */,
 			);
 			path = MIDIDemo;
 			sourceTree = "<group>";
@@ -169,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				6EDA59E51A711D1A0001E3D8 /* clap.mid */,
+				6EE2F4BE1A728376004E4680 /* hat.mid */,
+				6EE2F4C21A728D8F004E4680 /* 1.mid */,
 				6EF2B7451A67F51600D93862 /* AudioToolbox.framework */,
 				6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */,
 				6ECEBD331A3DD029005A9250 /* Info.plist */,
@@ -239,8 +251,8 @@
 		6EE2F24A1A726FD2004E4680 /* FMOD */ = {
 			isa = PBXGroup;
 			children = (
+				6EE2F4C01A728A30004E4680 /* gs_instruments.dls */,
 				6EE2F24B1A7275EB004E4680 /* api */,
-				6EE2F2491A726FC3004E4680 /* gm.dls */,
 			);
 			name = FMOD;
 			sourceTree = "<group>";
@@ -389,9 +401,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EE2F4C31A728D8F004E4680 /* 1.mid in Resources */,
+				6EE2F4C11A728A30004E4680 /* gs_instruments.dls in Resources */,
 				6EDA59E61A711D1A0001E3D8 /* clap.mid in Resources */,
 				6EF2B74C1A67F58100D93862 /* B.wav in Resources */,
 				6EF2B74B1A67F58100D93862 /* A.wav in Resources */,
+				6EE2F4BF1A728376004E4680 /* hat.mid in Resources */,
 				6ECEBD3E1A3DD029005A9250 /* Main.storyboard in Resources */,
 				6EF2B74E1A67F58100D93862 /* D.wav in Resources */,
 				6ECEBD431A3DD029005A9250 /* LaunchScreen.xib in Resources */,
@@ -418,6 +433,7 @@
 				6ED4C6351A6FDF2D00959CCB /* HeaderChunks.m in Sources */,
 				6ECEBD381A3DD029005A9250 /* AppDelegate.mm in Sources */,
 				6EE06D871A611CA3003CDF38 /* CommunicationController.m in Sources */,
+				6EE2F3851A727805004E4680 /* MIDIPlayController.mm in Sources */,
 				6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */,
 				6ED4C63B1A6FDF4F00959CCB /* ReadMini.m in Sources */,
 				6ED4C6381A6FDF3A00959CCB /* TrackChunk.m in Sources */,
@@ -548,6 +564,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -577,6 +594,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
