@@ -84,7 +84,8 @@
                 }else{
                     self.msgView.text=[NSString stringWithFormat:@"%@;(%@,%f)",oldStr,dic[@"msg"],diff];
                 }
-                [self.dele playSound:dic[@"msg"]];
+                
+                [self.dele.midiPlayer playMIDIData:[dic[@"msg"] dataUsingEncoding:NSUTF8StringEncoding]];
                 
             }
                 break;

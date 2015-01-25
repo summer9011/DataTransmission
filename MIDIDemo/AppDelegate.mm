@@ -7,18 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import <AudioToolbox/AudioToolbox.h>
 
-#import "ReadMini.h"
-
-@interface AppDelegate () {
-    SystemSoundID soundID;
-}
+@interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-@synthesize ownerID,heartBeatTimer;
+@synthesize ownerID,heartBeatTimer,midiPlayer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.recevierList=[NSMutableArray array];
@@ -26,9 +21,7 @@
     //设置应用保持常亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    //读取MIDI文件
-//    NSString *path=[[NSBundle mainBundle] pathForResource:@"clap" ofType:@"mid"];
-//    [ReadMini readMIDIFile:path];
+    midiPlayer=[[PlayMIDI alloc] initWithFMOD];
     
     return YES;
 }
@@ -49,24 +42,6 @@
     NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
     
     [self.asyncSocket writeData:data withTimeout:-1 tag:2];
-}
-
-//播放音效
--(void)playSound:(NSString *)latter {
-    NSString *path = [[NSBundle mainBundle] pathForResource:latter ofType:@"wav"];
-    if (path) {
-        SystemSoundID theSoundID;
-        OSStatus error =  AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSoundID);
-        if (error == kAudioServicesNoError) {
-            soundID = theSoundID;
-        }else {
-            NSLog(@"Failed to create sound ");
-        }
-    }else{
-        NSLog(@"no wav file :%@",latter);
-    }
-    
-    AudioServicesPlaySystemSound(soundID);
 }
 
 #pragma mark - CBCentralManagerDelegate

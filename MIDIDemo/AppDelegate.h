@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+
 #import "AsyncSocket.h"
+#import "PlayMIDI.h"
 
 @protocol CBConnectionDelegate <NSObject>
 
@@ -54,8 +56,7 @@
 @property (nonatomic,strong) NSMutableArray *recevierList;
 @property (nonatomic,strong) NSTimer *heartBeatTimer;
 
-//播放音效
--(void)playSound:(NSString *)latter;
+@property (nonatomic,strong) PlayMIDI *midiPlayer;
 
 @end
 

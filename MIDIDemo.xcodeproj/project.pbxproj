@@ -14,10 +14,7 @@
 		6ECEBD431A3DD029005A9250 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */; };
 		6ECEBD4F1A3DD029005A9250 /* MIDIDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEBD4E1A3DD029005A9250 /* MIDIDemoTests.m */; };
 		6ECEBD5E1A3DDB50005A9250 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */; };
-		6ED4C6351A6FDF2D00959CCB /* HeaderChunks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED4C6341A6FDF2D00959CCB /* HeaderChunks.m */; };
-		6ED4C6381A6FDF3A00959CCB /* TrackChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED4C6371A6FDF3A00959CCB /* TrackChunk.m */; };
-		6ED4C63B1A6FDF4F00959CCB /* ReadMini.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED4C63A1A6FDF4F00959CCB /* ReadMini.m */; };
-		6EDA59E61A711D1A0001E3D8 /* clap.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6EDA59E51A711D1A0001E3D8 /* clap.mid */; };
+		6ED424571A73DE2C00CD0C08 /* PlayMIDI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED424561A73DE2C00CD0C08 /* PlayMIDI.mm */; };
 		6EE06D7E1A61161C003CDF38 /* ChooseHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */; };
 		6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */; };
 		6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */; };
@@ -26,10 +23,7 @@
 		6EE2F3221A7275EC004E4680 /* libfmod_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BD1A7275EC004E4680 /* libfmod_iphonesimulator.a */; };
 		6EE2F3231A7275EC004E4680 /* libfmodL_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BE1A7275EC004E4680 /* libfmodL_iphoneos.a */; };
 		6EE2F3241A7275EC004E4680 /* libfmodL_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BF1A7275EC004E4680 /* libfmodL_iphonesimulator.a */; };
-		6EE2F3851A727805004E4680 /* MIDIPlayController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2F3841A727805004E4680 /* MIDIPlayController.mm */; };
-		6EE2F4BF1A728376004E4680 /* hat.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2F4BE1A728376004E4680 /* hat.mid */; };
 		6EE2F4C11A728A30004E4680 /* gs_instruments.dls in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2F4C01A728A30004E4680 /* gs_instruments.dls */; };
-		6EE2F4C51A728F72004E4680 /* 1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2F4C41A728F72004E4680 /* 1.mid */; };
 		6EE472391A623AB20046287F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472361A623AB20046287F /* AsyncSocket.m */; };
 		6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472381A623AB20046287F /* AsyncUdpSocket.m */; };
 		6EF2B7461A67F51600D93862 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF2B7451A67F51600D93862 /* AudioToolbox.framework */; };
@@ -62,13 +56,8 @@
 		6ECEBD4D1A3DD029005A9250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECEBD4E1A3DD029005A9250 /* MIDIDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIDIDemoTests.m; sourceTree = "<group>"; };
 		6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
-		6ED4C6331A6FDF2D00959CCB /* HeaderChunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderChunks.h; sourceTree = "<group>"; };
-		6ED4C6341A6FDF2D00959CCB /* HeaderChunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderChunks.m; sourceTree = "<group>"; };
-		6ED4C6361A6FDF3900959CCB /* TrackChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackChunk.h; sourceTree = "<group>"; };
-		6ED4C6371A6FDF3A00959CCB /* TrackChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackChunk.m; sourceTree = "<group>"; };
-		6ED4C6391A6FDF4F00959CCB /* ReadMini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadMini.h; sourceTree = "<group>"; };
-		6ED4C63A1A6FDF4F00959CCB /* ReadMini.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadMini.m; sourceTree = "<group>"; };
-		6EDA59E51A711D1A0001E3D8 /* clap.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = clap.mid; sourceTree = "<group>"; };
+		6ED424551A73DE2C00CD0C08 /* PlayMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayMIDI.h; sourceTree = "<group>"; };
+		6ED424561A73DE2C00CD0C08 /* PlayMIDI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayMIDI.mm; sourceTree = "<group>"; };
 		6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseHardWareController.h; sourceTree = "<group>"; };
 		6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseHardWareController.m; sourceTree = "<group>"; };
 		6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorHardWareController.h; sourceTree = "<group>"; };
@@ -91,11 +80,7 @@
 		6EE2F2BD1A7275EC004E4680 /* libfmod_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmod_iphonesimulator.a; sourceTree = "<group>"; };
 		6EE2F2BE1A7275EC004E4680 /* libfmodL_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmodL_iphoneos.a; sourceTree = "<group>"; };
 		6EE2F2BF1A7275EC004E4680 /* libfmodL_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmodL_iphonesimulator.a; sourceTree = "<group>"; };
-		6EE2F3831A727805004E4680 /* MIDIPlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIPlayController.h; sourceTree = "<group>"; };
-		6EE2F3841A727805004E4680 /* MIDIPlayController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MIDIPlayController.mm; sourceTree = "<group>"; };
-		6EE2F4BE1A728376004E4680 /* hat.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = hat.mid; sourceTree = "<group>"; };
 		6EE2F4C01A728A30004E4680 /* gs_instruments.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_instruments.dls; sourceTree = "<group>"; };
-		6EE2F4C41A728F72004E4680 /* 1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 1.mid; sourceTree = "<group>"; };
 		6EE472351A623AB20046287F /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		6EE472361A623AB20046287F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		6EE472371A623AB20046287F /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
@@ -153,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				6ECEDB191A693C630036C384 /* 第三方库 */,
-				6ED4C6321A6FDEEC00959CCB /* MIDI解析库 */,
+				6ED424581A73DE4600CD0C08 /* 播放MIDI库 */,
 				6ECEBD361A3DD029005A9250 /* AppDelegate.h */,
 				6ECEBD371A3DD029005A9250 /* AppDelegate.mm */,
 				6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */,
@@ -169,8 +154,6 @@
 				6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */,
 				6ECEDB171A693C450036C384 /* 音色库 */,
 				6ECEBD321A3DD029005A9250 /* Supporting Files */,
-				6EE2F3831A727805004E4680 /* MIDIPlayController.h */,
-				6EE2F3841A727805004E4680 /* MIDIPlayController.mm */,
 			);
 			path = MIDIDemo;
 			sourceTree = "<group>";
@@ -178,9 +161,6 @@
 		6ECEBD321A3DD029005A9250 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6EE2F4C41A728F72004E4680 /* 1.mid */,
-				6EDA59E51A711D1A0001E3D8 /* clap.mid */,
-				6EE2F4BE1A728376004E4680 /* hat.mid */,
 				6EF2B7451A67F51600D93862 /* AudioToolbox.framework */,
 				6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */,
 				6ECEBD331A3DD029005A9250 /* Info.plist */,
@@ -235,17 +215,13 @@
 			name = "第三方库";
 			sourceTree = "<group>";
 		};
-		6ED4C6321A6FDEEC00959CCB /* MIDI解析库 */ = {
+		6ED424581A73DE4600CD0C08 /* 播放MIDI库 */ = {
 			isa = PBXGroup;
 			children = (
-				6ED4C6331A6FDF2D00959CCB /* HeaderChunks.h */,
-				6ED4C6341A6FDF2D00959CCB /* HeaderChunks.m */,
-				6ED4C6361A6FDF3900959CCB /* TrackChunk.h */,
-				6ED4C6371A6FDF3A00959CCB /* TrackChunk.m */,
-				6ED4C6391A6FDF4F00959CCB /* ReadMini.h */,
-				6ED4C63A1A6FDF4F00959CCB /* ReadMini.m */,
+				6ED424551A73DE2C00CD0C08 /* PlayMIDI.h */,
+				6ED424561A73DE2C00CD0C08 /* PlayMIDI.mm */,
 			);
-			name = "MIDI解析库";
+			name = "播放MIDI库";
 			sourceTree = "<group>";
 		};
 		6EE2F24A1A726FD2004E4680 /* FMOD */ = {
@@ -401,12 +377,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE2F4C51A728F72004E4680 /* 1.mid in Resources */,
 				6EE2F4C11A728A30004E4680 /* gs_instruments.dls in Resources */,
-				6EDA59E61A711D1A0001E3D8 /* clap.mid in Resources */,
 				6EF2B74C1A67F58100D93862 /* B.wav in Resources */,
 				6EF2B74B1A67F58100D93862 /* A.wav in Resources */,
-				6EE2F4BF1A728376004E4680 /* hat.mid in Resources */,
 				6ECEBD3E1A3DD029005A9250 /* Main.storyboard in Resources */,
 				6EF2B74E1A67F58100D93862 /* D.wav in Resources */,
 				6ECEBD431A3DD029005A9250 /* LaunchScreen.xib in Resources */,
@@ -430,13 +403,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EE06D7E1A61161C003CDF38 /* ChooseHardWareController.m in Sources */,
-				6ED4C6351A6FDF2D00959CCB /* HeaderChunks.m in Sources */,
 				6ECEBD381A3DD029005A9250 /* AppDelegate.mm in Sources */,
 				6EE06D871A611CA3003CDF38 /* CommunicationController.m in Sources */,
-				6EE2F3851A727805004E4680 /* MIDIPlayController.mm in Sources */,
+				6ED424571A73DE2C00CD0C08 /* PlayMIDI.mm in Sources */,
 				6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */,
-				6ED4C63B1A6FDF4F00959CCB /* ReadMini.m in Sources */,
-				6ED4C6381A6FDF3A00959CCB /* TrackChunk.m in Sources */,
 				6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */,
 				6ECEBD351A3DD029005A9250 /* main.m in Sources */,
 				6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */,
