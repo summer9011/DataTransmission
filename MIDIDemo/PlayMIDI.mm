@@ -7,8 +7,9 @@
 //
 
 #import "PlayMIDI.h"
-#import <AudioToolbox/AudioToolbox.h>
 
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import <AudioToolbox/AudioSession.h>
 #import "fmod.hpp"
 #import "fmod_errors.h"
@@ -25,10 +26,12 @@ void ERRCHECK(FMOD_RESULT result) {
     FMOD::Sound *sound;
     FMOD::Channel *channel;
     FMOD_RESULT result;
-    FMOD_CREATESOUNDEXINFO soundExInfo;
     
     BOOL isUseFMOD;
     BOOL isUseHTML5;
+    BOOL isUseAVMIDIPlayer;
+    
+    AVMIDIPlayer *avMIDIPlayer;
 }
 
 @end
@@ -46,34 +49,24 @@ void ERRCHECK(FMOD_RESULT result) {
         sound=NULL;
         channel=NULL;
         
-        [self initFMOD];
+        unsigned int version=0;
+        
+        //初始化System
+        result=FMOD::System_Create(&system);
+        ERRCHECK(result);
+        
+        result=system->getVersion(&version);
+        ERRCHECK(result);
+        
+        if (version<FMOD_VERSION) {
+            fprintf(stderr, "You are using an old version of FMOD %08x.  This program requires %08x\n", version, FMOD_VERSION);
+            exit(-1);
+        }
+        
+        result=system->init(32, FMOD_INIT_NORMAL, NULL);
+        ERRCHECK(result);
     }
     return self;
-}
-
-//初始化FMOD
--(void)initFMOD {
-    unsigned int version=0;
-    
-    //初始化System
-    result=FMOD::System_Create(&system);
-    ERRCHECK(result);
-    
-    result=system->getVersion(&version);
-    ERRCHECK(result);
-    
-    if (version<FMOD_VERSION) {
-        fprintf(stderr, "You are using an old version of FMOD %08x.  This program requires %08x\n", version, FMOD_VERSION);
-        exit(-1);
-    }
-    
-    result=system->init(32, FMOD_INIT_NORMAL, NULL);
-    ERRCHECK(result);
-    
-    //设置dls文件
-    memset(&soundExInfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
-    soundExInfo.cbsize=sizeof(FMOD_CREATESOUNDEXINFO);
-    soundExInfo.dlsname=[[[NSBundle mainBundle] pathForResource:@"gs_instruments" ofType:@"dls"] UTF8String];
 }
 
 //使用HTML5播放MIDI
@@ -86,15 +79,31 @@ void ERRCHECK(FMOD_RESULT result) {
     return self;
 }
 
+//使用AVMIDIPlayer播放MIDI
+-(id)initWithAVMIDIPlayer {
+    self=[super init];
+    if (self) {
+        isUseAVMIDIPlayer=YES;
+    }
+    return self;
+}
+
 //播放MIDI文件
 -(void)playMIDIData:(NSData *)data {
+    NSString *GMPath=[[NSBundle mainBundle] pathForResource:@"gm" ofType:@"dls"];
+    
     //使用FMOD播放
     if (isUseFMOD) {
-        void *pChar=const_cast<void *>(data.bytes);
-        const char *p=static_cast<char *>(pChar);
+        //设置dls文件
+        FMOD_CREATESOUNDEXINFO soundExInfo;
+        memset(&soundExInfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
+        soundExInfo.cbsize=sizeof(FMOD_CREATESOUNDEXINFO);
+        soundExInfo.dlsname=[GMPath UTF8String];
+        
+        char *midi=(char *)[data bytes];
         
         //添加第一个MIDI文件
-        result=system->createSound(p, FMOD_DEFAULT, &soundExInfo, &sound);
+        result=system->createStream(midi, FMOD_CREATESTREAM, &soundExInfo, &sound);
         ERRCHECK(result);
         result=sound->setMode(FMOD_LOOP_OFF);
         ERRCHECK(result);
@@ -107,6 +116,26 @@ void ERRCHECK(FMOD_RESULT result) {
     //使用HTML5播放
     if (isUseHTML5) {
         NSLog(@"use html5");
+    }
+    
+    //使用AVMIDIPlayer播放
+    if (isUseAVMIDIPlayer) {
+        
+        avMIDIPlayer=nil;
+        
+        NSError *error;
+        avMIDIPlayer=[[AVMIDIPlayer alloc] initWithData:data soundBankURL:[NSURL URLWithString:GMPath] error:&error];
+        
+        if (!error) {
+            [avMIDIPlayer prepareToPlay];
+            [avMIDIPlayer play:^{
+                NSLog(@"done");
+            }];
+        }else{
+            NSLog(@"error %@",error);
+        }
+        
+        
     }
 }
 

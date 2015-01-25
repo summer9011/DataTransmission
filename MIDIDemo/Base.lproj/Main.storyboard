@@ -54,12 +54,27 @@
                                     <action selector="goSimulatorHardWare:" destination="HtJ-91-FbB" eventType="touchUpInside" id="WUS-v2-ZPY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBb-So-PdG">
+                                <rect key="frame" x="16" y="562" width="90" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dhN-JM-S0U"/>
+                                    <constraint firstAttribute="width" constant="90" id="snP-2f-iWQ"/>
+                                </constraints>
+                                <state key="normal" title="PlayMIDITest">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playMIDITest:" destination="HtJ-91-FbB" eventType="touchUpInside" id="9Gx-3e-leL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="VO6-Vf-rhp" secondAttribute="centerX" id="4pw-qH-163"/>
                             <constraint firstItem="moj-Jo-feX" firstAttribute="leading" secondItem="19V-oN-6Rx" secondAttribute="leadingMargin" id="GJ6-YX-gea"/>
+                            <constraint firstItem="vSM-aa-hQ7" firstAttribute="top" secondItem="TBb-So-PdG" secondAttribute="bottom" constant="8" id="Rys-Tq-poQ"/>
                             <constraint firstItem="vSM-aa-hQ7" firstAttribute="top" secondItem="moj-Jo-feX" secondAttribute="bottom" constant="50" id="U6A-0E-YTV"/>
+                            <constraint firstItem="TBb-So-PdG" firstAttribute="leading" secondItem="19V-oN-6Rx" secondAttribute="leadingMargin" id="nnd-JQ-7To"/>
                             <constraint firstItem="vSM-aa-hQ7" firstAttribute="top" secondItem="VO6-Vf-rhp" secondAttribute="bottom" constant="8" id="yI9-Yc-fqD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="moj-Jo-feX" secondAttribute="trailing" id="zOD-Nu-Sv1"/>
                             <constraint firstItem="moj-Jo-feX" firstAttribute="top" secondItem="4nL-J7-z5Z" secondAttribute="bottom" constant="10" id="zlv-JA-z8b"/>
@@ -288,7 +303,7 @@
                                     <action selector="cancel:" destination="ix7-nP-vho" eventType="touchUpInside" id="3Fl-rM-k7K"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sU-0Q-hB5">
+                            <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sU-0Q-hB5">
                                 <rect key="frame" x="16" y="542" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -303,7 +318,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="juK-CU-tCe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSv-dV-tFq">
+                            <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSv-dV-tFq">
                                 <rect key="frame" x="179" y="542" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -318,7 +333,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="IA2-Zv-T35"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlz-sA-Rhn">
+                            <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlz-sA-Rhn">
                                 <rect key="frame" x="341" y="542" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -333,7 +348,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="qwU-4B-1OH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktg-IF-J1D">
+                            <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktg-IF-J1D">
                                 <rect key="frame" x="504" y="542" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -348,7 +363,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="hId-y4-zot"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sx-3i-JP8">
+                            <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sx-3i-JP8">
                                 <rect key="frame" x="16" y="484" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -363,7 +378,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="Ad0-bA-3sa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8WC-8p-YyY">
+                            <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8WC-8p-YyY">
                                 <rect key="frame" x="179" y="484" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -378,7 +393,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="rIZ-Uu-Zye"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOS-Q1-QPH">
+                            <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOS-Q1-QPH">
                                 <rect key="frame" x="341" y="484" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -393,7 +408,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="fhi-a4-ZLc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjI-Ct-JRx">
+                            <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjI-Ct-JRx">
                                 <rect key="frame" x="504" y="484" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -408,7 +423,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="Jzv-ZI-rcp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6Q-j0-umT">
+                            <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6Q-j0-umT">
                                 <rect key="frame" x="16" y="426" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -423,7 +438,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="FIJ-36-7ff"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baU-Ce-hYF">
+                            <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baU-Ce-hYF">
                                 <rect key="frame" x="179" y="426" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -438,7 +453,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="bUF-OQ-96L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re7-dh-Kzu">
+                            <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re7-dh-Kzu">
                                 <rect key="frame" x="341" y="426" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -453,7 +468,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="yKq-ye-shb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTe-U8-PDN">
+                            <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTe-U8-PDN">
                                 <rect key="frame" x="504" y="426" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -468,7 +483,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="gUS-o0-Tjj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7u1-u7-2Fc">
+                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7u1-u7-2Fc">
                                 <rect key="frame" x="16" y="368" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -483,7 +498,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="1Sj-dn-R0c"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jze-hC-smj">
+                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jze-hC-smj">
                                 <rect key="frame" x="179" y="368" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -498,7 +513,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="FtJ-gF-ves"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ki8-lf-yja">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ki8-lf-yja">
                                 <rect key="frame" x="341" y="368" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -513,7 +528,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="tZw-Sl-QXH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8KC-2j-1qp">
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8KC-2j-1qp">
                                 <rect key="frame" x="504" y="368" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -528,7 +543,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="AvW-Dp-whO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijE-N6-77O">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijE-N6-77O">
                                 <rect key="frame" x="16" y="310" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -543,7 +558,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="MaZ-rw-fQb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8y-yO-1KF">
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8y-yO-1KF">
                                 <rect key="frame" x="179" y="310" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -558,7 +573,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="vmy-Lp-3bP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy4-8e-9Rj">
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy4-8e-9Rj">
                                 <rect key="frame" x="341" y="310" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -573,7 +588,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="ngS-y8-Rht"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylY-dR-I4j">
+                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylY-dR-I4j">
                                 <rect key="frame" x="504" y="310" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -588,7 +603,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="Fes-hn-e7l"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-zg-kBQ">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-zg-kBQ">
                                 <rect key="frame" x="16" y="252" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -603,7 +618,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="G1R-aU-jZT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQp-7B-a2C">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQp-7B-a2C">
                                 <rect key="frame" x="179" y="252" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -618,7 +633,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="p8b-Nk-ny0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5p-jw-J18">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5p-jw-J18">
                                 <rect key="frame" x="504" y="252" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -633,7 +648,7 @@
                                     <action selector="sendData:" destination="ix7-nP-vho" eventType="touchUpInside" id="QLz-Gi-0RY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gY6-zb-u2w">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gY6-zb-u2w">
                                 <rect key="frame" x="341" y="252" width="80" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

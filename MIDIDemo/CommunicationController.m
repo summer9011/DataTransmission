@@ -85,7 +85,9 @@
                     self.msgView.text=[NSString stringWithFormat:@"%@;(%@,%f)",oldStr,dic[@"msg"],diff];
                 }
                 
-                [self.dele.midiPlayer playMIDIData:[dic[@"msg"] dataUsingEncoding:NSUTF8StringEncoding]];
+                NSData *midiData=[[NSData alloc] initWithBase64EncodedString:dic[@"msg"] options:0];
+                
+                [self.dele.midiPlayer playMIDIData:midiData];
                 
             }
                 break;
@@ -101,12 +103,12 @@
     }
 }
 
--(void)didSendData:(NSString *)data FromPeripheral:(CBPeripheral *)peripheral {
-    NSLog(@"sendData %@",data);
+-(void)didSendData:(NSData *)data FromPeripheral:(CBPeripheral *)peripheral {
+    NSString *temp=[data base64EncodedStringWithOptions:0];
     
-    NSArray *subArr=[data componentsSeparatedByString:@","];
+    NSDate *currentDate=[NSDate date];
     
-    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d,\"clickTime\":%f}\n",5,subArr[0],[self.dele.recevierList[0] intValue],[subArr[1] doubleValue]];
+    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d,\"clickTime\":%f}\n",5,temp,[self.dele.recevierList[0] intValue],currentDate.timeIntervalSince1970];
     NSData *strData=[str dataUsingEncoding:NSUTF8StringEncoding];
     
     [self.dele.asyncSocket writeData:strData withTimeout:-1 tag:5];

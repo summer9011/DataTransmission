@@ -16,6 +16,9 @@
 //使用HTML5播放MIDI
 -(id)initWithHTML5;
 
+//使用AVMIDIPlayer播放MIDI
+-(id)initWithAVMIDIPlayer;
+
 //播放MIDI文件
 -(void)playMIDIData:(NSData *)data;
 

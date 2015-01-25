@@ -37,7 +37,7 @@
 
 #pragma mark - CommunicationController必须实现
 //向另一方发送数据
--(void)didSendData:(NSString *)data FromPeripheral:(CBPeripheral *)peripheral;
+-(void)didSendData:(NSData *)data FromPeripheral:(CBPeripheral *)peripheral;
 
 @end
 

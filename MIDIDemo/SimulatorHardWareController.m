@@ -38,12 +38,13 @@
 - (IBAction)sendData:(id)sender {
     UIButton *button=(UIButton *)sender;
     
-    //记录点击时间
-    NSDate *current=[NSDate date];
+    //midi数据
+    NSString *resourcePath=[NSString stringWithFormat:@"fpc_DrumAndBass_%ld",(long)button.tag];
+    NSString *midiPath=[[NSBundle mainBundle] pathForResource:resourcePath ofType:@"mid"];
+    NSData *midiData=[NSData dataWithContentsOfFile:midiPath];
     
     if (self.receiverCentral) {
-        NSString *str=[NSString stringWithFormat:@"%@,%f",button.titleLabel.text,current.timeIntervalSince1970];
-        [self.peripheralManager updateValue:[str dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.customCharacteristic onSubscribedCentrals:@[self.receiverCentral]];
+        [self.peripheralManager updateValue:midiData forCharacteristic:self.customCharacteristic onSubscribedCentrals:@[self.receiverCentral]];
     }else{
         NSLog(@"连接中心后重试");
     }

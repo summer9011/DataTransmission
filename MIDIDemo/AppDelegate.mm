@@ -21,6 +21,8 @@
     //设置应用保持常亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
+    NSLog(@"%@",[[NSBundle mainBundle] pathForResource:@"gm" ofType:@"dls"]);
+    
     midiPlayer=[[PlayMIDI alloc] initWithFMOD];
     
     return YES;
@@ -127,10 +129,9 @@
         return;
     }
     
-    NSString *data=[[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-    if (data&&![data isEqualToString:@""]) {
+    if (characteristic.value) {
         if ([self.ASDelegate respondsToSelector:@selector(didSendData:FromPeripheral:)]) {
-            [self.ASDelegate didSendData:data FromPeripheral:peripheral];
+            [self.ASDelegate didSendData:characteristic.value FromPeripheral:peripheral];
         }
     }
     

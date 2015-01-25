@@ -48,6 +48,14 @@ static NSString *CellIdentifier=@"HardWareCell";
     }
 }
 
+- (IBAction)playMIDITest:(id)sender {
+    NSString *midiFilePath=[[NSBundle mainBundle] pathForResource:@"fpc_DrumAndBass_10" ofType:@"mid"];
+    NSData *midiData=[NSData dataWithContentsOfFile:midiFilePath];
+    
+    [self.dele.midiPlayer playMIDIData:midiData];
+}
+
+
 //进入模拟
 - (IBAction)goSimulatorHardWare:(id)sender {
     self.dele.centralManager.delegate=nil;

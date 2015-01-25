@@ -14,7 +14,33 @@
 		6ECEBD431A3DD029005A9250 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */; };
 		6ECEBD4F1A3DD029005A9250 /* MIDIDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEBD4E1A3DD029005A9250 /* MIDIDemoTests.m */; };
 		6ECEBD5E1A3DDB50005A9250 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */; };
+		6ED075DF1A751A0A00DEC1FD /* gm.dls in Resources */ = {isa = PBXBuildFile; fileRef = 6ED075DE1A751A0A00DEC1FD /* gm.dls */; };
+		6ED075E11A751F6200DEC1FD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED075E01A751F6200DEC1FD /* AVFoundation.framework */; };
 		6ED424571A73DE2C00CD0C08 /* PlayMIDI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED424561A73DE2C00CD0C08 /* PlayMIDI.mm */; };
+		6ED424711A7498B400CD0C08 /* fpc_DrumAndBass_1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424591A7498B400CD0C08 /* fpc_DrumAndBass_1.mid */; };
+		6ED424721A7498B400CD0C08 /* fpc_DrumAndBass_2.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4245A1A7498B400CD0C08 /* fpc_DrumAndBass_2.mid */; };
+		6ED424731A7498B400CD0C08 /* fpc_DrumAndBass_3.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4245B1A7498B400CD0C08 /* fpc_DrumAndBass_3.mid */; };
+		6ED424741A7498B400CD0C08 /* fpc_DrumAndBass_4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4245C1A7498B400CD0C08 /* fpc_DrumAndBass_4.mid */; };
+		6ED424751A7498B400CD0C08 /* fpc_DrumAndBass_5.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4245D1A7498B400CD0C08 /* fpc_DrumAndBass_5.mid */; };
+		6ED424761A7498B400CD0C08 /* fpc_DrumAndBass_6.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4245E1A7498B400CD0C08 /* fpc_DrumAndBass_6.mid */; };
+		6ED424771A7498B400CD0C08 /* fpc_DrumAndBass_7.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4245F1A7498B400CD0C08 /* fpc_DrumAndBass_7.mid */; };
+		6ED424781A7498B400CD0C08 /* fpc_DrumAndBass_8.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424601A7498B400CD0C08 /* fpc_DrumAndBass_8.mid */; };
+		6ED424791A7498B400CD0C08 /* fpc_DrumAndBass_9.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424611A7498B400CD0C08 /* fpc_DrumAndBass_9.mid */; };
+		6ED4247A1A7498B400CD0C08 /* fpc_DrumAndBass_10.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424621A7498B400CD0C08 /* fpc_DrumAndBass_10.mid */; };
+		6ED4247B1A7498B400CD0C08 /* fpc_DrumAndBass_11.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424631A7498B400CD0C08 /* fpc_DrumAndBass_11.mid */; };
+		6ED4247C1A7498B400CD0C08 /* fpc_DrumAndBass_12.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424641A7498B400CD0C08 /* fpc_DrumAndBass_12.mid */; };
+		6ED4247D1A7498B400CD0C08 /* fpc_DrumAndBass_13.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424651A7498B400CD0C08 /* fpc_DrumAndBass_13.mid */; };
+		6ED4247E1A7498B400CD0C08 /* fpc_DrumAndBass_14.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424661A7498B400CD0C08 /* fpc_DrumAndBass_14.mid */; };
+		6ED4247F1A7498B400CD0C08 /* fpc_DrumAndBass_15.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424671A7498B400CD0C08 /* fpc_DrumAndBass_15.mid */; };
+		6ED424801A7498B400CD0C08 /* fpc_DrumAndBass_16.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424681A7498B400CD0C08 /* fpc_DrumAndBass_16.mid */; };
+		6ED424811A7498B400CD0C08 /* fpc_DrumAndBass_17.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424691A7498B400CD0C08 /* fpc_DrumAndBass_17.mid */; };
+		6ED424821A7498B400CD0C08 /* fpc_DrumAndBass_18.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246A1A7498B400CD0C08 /* fpc_DrumAndBass_18.mid */; };
+		6ED424831A7498B400CD0C08 /* fpc_DrumAndBass_19.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246B1A7498B400CD0C08 /* fpc_DrumAndBass_19.mid */; };
+		6ED424841A7498B400CD0C08 /* fpc_DrumAndBass_20.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246C1A7498B400CD0C08 /* fpc_DrumAndBass_20.mid */; };
+		6ED424851A7498B400CD0C08 /* fpc_DrumAndBass_21.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246D1A7498B400CD0C08 /* fpc_DrumAndBass_21.mid */; };
+		6ED424861A7498B400CD0C08 /* fpc_DrumAndBass_22.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246E1A7498B400CD0C08 /* fpc_DrumAndBass_22.mid */; };
+		6ED424871A7498B400CD0C08 /* fpc_DrumAndBass_23.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246F1A7498B400CD0C08 /* fpc_DrumAndBass_23.mid */; };
+		6ED424881A7498B400CD0C08 /* fpc_DrumAndBass_24.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424701A7498B400CD0C08 /* fpc_DrumAndBass_24.mid */; };
 		6EE06D7E1A61161C003CDF38 /* ChooseHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */; };
 		6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */; };
 		6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */; };
@@ -23,14 +49,9 @@
 		6EE2F3221A7275EC004E4680 /* libfmod_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BD1A7275EC004E4680 /* libfmod_iphonesimulator.a */; };
 		6EE2F3231A7275EC004E4680 /* libfmodL_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BE1A7275EC004E4680 /* libfmodL_iphoneos.a */; };
 		6EE2F3241A7275EC004E4680 /* libfmodL_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BF1A7275EC004E4680 /* libfmodL_iphonesimulator.a */; };
-		6EE2F4C11A728A30004E4680 /* gs_instruments.dls in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2F4C01A728A30004E4680 /* gs_instruments.dls */; };
 		6EE472391A623AB20046287F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472361A623AB20046287F /* AsyncSocket.m */; };
 		6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE472381A623AB20046287F /* AsyncUdpSocket.m */; };
 		6EF2B7461A67F51600D93862 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF2B7451A67F51600D93862 /* AudioToolbox.framework */; };
-		6EF2B74B1A67F58100D93862 /* A.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B7471A67F58100D93862 /* A.wav */; };
-		6EF2B74C1A67F58100D93862 /* B.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B7481A67F58100D93862 /* B.wav */; };
-		6EF2B74D1A67F58100D93862 /* C.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B7491A67F58100D93862 /* C.wav */; };
-		6EF2B74E1A67F58100D93862 /* D.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EF2B74A1A67F58100D93862 /* D.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +77,34 @@
 		6ECEBD4D1A3DD029005A9250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECEBD4E1A3DD029005A9250 /* MIDIDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIDIDemoTests.m; sourceTree = "<group>"; };
 		6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		6ED075DE1A751A0A00DEC1FD /* gm.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gm.dls; sourceTree = "<group>"; };
+		6ED075E01A751F6200DEC1FD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6ED424551A73DE2C00CD0C08 /* PlayMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayMIDI.h; sourceTree = "<group>"; };
 		6ED424561A73DE2C00CD0C08 /* PlayMIDI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayMIDI.mm; sourceTree = "<group>"; };
+		6ED424591A7498B400CD0C08 /* fpc_DrumAndBass_1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_1.mid; sourceTree = "<group>"; };
+		6ED4245A1A7498B400CD0C08 /* fpc_DrumAndBass_2.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_2.mid; sourceTree = "<group>"; };
+		6ED4245B1A7498B400CD0C08 /* fpc_DrumAndBass_3.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_3.mid; sourceTree = "<group>"; };
+		6ED4245C1A7498B400CD0C08 /* fpc_DrumAndBass_4.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_4.mid; sourceTree = "<group>"; };
+		6ED4245D1A7498B400CD0C08 /* fpc_DrumAndBass_5.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_5.mid; sourceTree = "<group>"; };
+		6ED4245E1A7498B400CD0C08 /* fpc_DrumAndBass_6.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_6.mid; sourceTree = "<group>"; };
+		6ED4245F1A7498B400CD0C08 /* fpc_DrumAndBass_7.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_7.mid; sourceTree = "<group>"; };
+		6ED424601A7498B400CD0C08 /* fpc_DrumAndBass_8.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_8.mid; sourceTree = "<group>"; };
+		6ED424611A7498B400CD0C08 /* fpc_DrumAndBass_9.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_9.mid; sourceTree = "<group>"; };
+		6ED424621A7498B400CD0C08 /* fpc_DrumAndBass_10.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_10.mid; sourceTree = "<group>"; };
+		6ED424631A7498B400CD0C08 /* fpc_DrumAndBass_11.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_11.mid; sourceTree = "<group>"; };
+		6ED424641A7498B400CD0C08 /* fpc_DrumAndBass_12.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_12.mid; sourceTree = "<group>"; };
+		6ED424651A7498B400CD0C08 /* fpc_DrumAndBass_13.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_13.mid; sourceTree = "<group>"; };
+		6ED424661A7498B400CD0C08 /* fpc_DrumAndBass_14.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_14.mid; sourceTree = "<group>"; };
+		6ED424671A7498B400CD0C08 /* fpc_DrumAndBass_15.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_15.mid; sourceTree = "<group>"; };
+		6ED424681A7498B400CD0C08 /* fpc_DrumAndBass_16.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_16.mid; sourceTree = "<group>"; };
+		6ED424691A7498B400CD0C08 /* fpc_DrumAndBass_17.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_17.mid; sourceTree = "<group>"; };
+		6ED4246A1A7498B400CD0C08 /* fpc_DrumAndBass_18.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_18.mid; sourceTree = "<group>"; };
+		6ED4246B1A7498B400CD0C08 /* fpc_DrumAndBass_19.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_19.mid; sourceTree = "<group>"; };
+		6ED4246C1A7498B400CD0C08 /* fpc_DrumAndBass_20.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_20.mid; sourceTree = "<group>"; };
+		6ED4246D1A7498B400CD0C08 /* fpc_DrumAndBass_21.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_21.mid; sourceTree = "<group>"; };
+		6ED4246E1A7498B400CD0C08 /* fpc_DrumAndBass_22.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_22.mid; sourceTree = "<group>"; };
+		6ED4246F1A7498B400CD0C08 /* fpc_DrumAndBass_23.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_23.mid; sourceTree = "<group>"; };
+		6ED424701A7498B400CD0C08 /* fpc_DrumAndBass_24.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_24.mid; sourceTree = "<group>"; };
 		6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseHardWareController.h; sourceTree = "<group>"; };
 		6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseHardWareController.m; sourceTree = "<group>"; };
 		6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorHardWareController.h; sourceTree = "<group>"; };
@@ -80,16 +127,11 @@
 		6EE2F2BD1A7275EC004E4680 /* libfmod_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmod_iphonesimulator.a; sourceTree = "<group>"; };
 		6EE2F2BE1A7275EC004E4680 /* libfmodL_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmodL_iphoneos.a; sourceTree = "<group>"; };
 		6EE2F2BF1A7275EC004E4680 /* libfmodL_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmodL_iphonesimulator.a; sourceTree = "<group>"; };
-		6EE2F4C01A728A30004E4680 /* gs_instruments.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_instruments.dls; sourceTree = "<group>"; };
 		6EE472351A623AB20046287F /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		6EE472361A623AB20046287F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		6EE472371A623AB20046287F /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
 		6EE472381A623AB20046287F /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
 		6EF2B7451A67F51600D93862 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		6EF2B7471A67F58100D93862 /* A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A.wav; sourceTree = "<group>"; };
-		6EF2B7481A67F58100D93862 /* B.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = B.wav; sourceTree = "<group>"; };
-		6EF2B7491A67F58100D93862 /* C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = C.wav; sourceTree = "<group>"; };
-		6EF2B74A1A67F58100D93862 /* D.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = D.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ED075E11A751F6200DEC1FD /* AVFoundation.framework in Frameworks */,
 				6EF2B7461A67F51600D93862 /* AudioToolbox.framework in Frameworks */,
 				6ECEBD5E1A3DDB50005A9250 /* CoreMIDI.framework in Frameworks */,
 				6EE2F3231A7275EC004E4680 /* libfmodL_iphoneos.a in Frameworks */,
@@ -161,6 +204,7 @@
 		6ECEBD321A3DD029005A9250 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6ED075E01A751F6200DEC1FD /* AVFoundation.framework */,
 				6EF2B7451A67F51600D93862 /* AudioToolbox.framework */,
 				6ECEBD5D1A3DDB50005A9250 /* CoreMIDI.framework */,
 				6ECEBD331A3DD029005A9250 /* Info.plist */,
@@ -198,10 +242,30 @@
 		6ECEDB181A693C4E0036C384 /* 测试 */ = {
 			isa = PBXGroup;
 			children = (
-				6EF2B7471A67F58100D93862 /* A.wav */,
-				6EF2B7481A67F58100D93862 /* B.wav */,
-				6EF2B7491A67F58100D93862 /* C.wav */,
-				6EF2B74A1A67F58100D93862 /* D.wav */,
+				6ED424591A7498B400CD0C08 /* fpc_DrumAndBass_1.mid */,
+				6ED4245A1A7498B400CD0C08 /* fpc_DrumAndBass_2.mid */,
+				6ED4245B1A7498B400CD0C08 /* fpc_DrumAndBass_3.mid */,
+				6ED4245C1A7498B400CD0C08 /* fpc_DrumAndBass_4.mid */,
+				6ED4245D1A7498B400CD0C08 /* fpc_DrumAndBass_5.mid */,
+				6ED4245E1A7498B400CD0C08 /* fpc_DrumAndBass_6.mid */,
+				6ED4245F1A7498B400CD0C08 /* fpc_DrumAndBass_7.mid */,
+				6ED424601A7498B400CD0C08 /* fpc_DrumAndBass_8.mid */,
+				6ED424611A7498B400CD0C08 /* fpc_DrumAndBass_9.mid */,
+				6ED424621A7498B400CD0C08 /* fpc_DrumAndBass_10.mid */,
+				6ED424631A7498B400CD0C08 /* fpc_DrumAndBass_11.mid */,
+				6ED424641A7498B400CD0C08 /* fpc_DrumAndBass_12.mid */,
+				6ED424651A7498B400CD0C08 /* fpc_DrumAndBass_13.mid */,
+				6ED424661A7498B400CD0C08 /* fpc_DrumAndBass_14.mid */,
+				6ED424671A7498B400CD0C08 /* fpc_DrumAndBass_15.mid */,
+				6ED424681A7498B400CD0C08 /* fpc_DrumAndBass_16.mid */,
+				6ED424691A7498B400CD0C08 /* fpc_DrumAndBass_17.mid */,
+				6ED4246A1A7498B400CD0C08 /* fpc_DrumAndBass_18.mid */,
+				6ED4246B1A7498B400CD0C08 /* fpc_DrumAndBass_19.mid */,
+				6ED4246C1A7498B400CD0C08 /* fpc_DrumAndBass_20.mid */,
+				6ED4246D1A7498B400CD0C08 /* fpc_DrumAndBass_21.mid */,
+				6ED4246E1A7498B400CD0C08 /* fpc_DrumAndBass_22.mid */,
+				6ED4246F1A7498B400CD0C08 /* fpc_DrumAndBass_23.mid */,
+				6ED424701A7498B400CD0C08 /* fpc_DrumAndBass_24.mid */,
 			);
 			name = "测试";
 			sourceTree = "<group>";
@@ -227,7 +291,7 @@
 		6EE2F24A1A726FD2004E4680 /* FMOD */ = {
 			isa = PBXGroup;
 			children = (
-				6EE2F4C01A728A30004E4680 /* gs_instruments.dls */,
+				6ED075DE1A751A0A00DEC1FD /* gm.dls */,
 				6EE2F24B1A7275EB004E4680 /* api */,
 			);
 			name = FMOD;
@@ -377,13 +441,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE2F4C11A728A30004E4680 /* gs_instruments.dls in Resources */,
-				6EF2B74C1A67F58100D93862 /* B.wav in Resources */,
-				6EF2B74B1A67F58100D93862 /* A.wav in Resources */,
+				6ED4247A1A7498B400CD0C08 /* fpc_DrumAndBass_10.mid in Resources */,
+				6ED4247F1A7498B400CD0C08 /* fpc_DrumAndBass_15.mid in Resources */,
+				6ED4247D1A7498B400CD0C08 /* fpc_DrumAndBass_13.mid in Resources */,
+				6ED4247E1A7498B400CD0C08 /* fpc_DrumAndBass_14.mid in Resources */,
+				6ED424871A7498B400CD0C08 /* fpc_DrumAndBass_23.mid in Resources */,
+				6ED424791A7498B400CD0C08 /* fpc_DrumAndBass_9.mid in Resources */,
+				6ED424751A7498B400CD0C08 /* fpc_DrumAndBass_5.mid in Resources */,
 				6ECEBD3E1A3DD029005A9250 /* Main.storyboard in Resources */,
-				6EF2B74E1A67F58100D93862 /* D.wav in Resources */,
+				6ED424801A7498B400CD0C08 /* fpc_DrumAndBass_16.mid in Resources */,
+				6ED424761A7498B400CD0C08 /* fpc_DrumAndBass_6.mid in Resources */,
+				6ED424731A7498B400CD0C08 /* fpc_DrumAndBass_3.mid in Resources */,
 				6ECEBD431A3DD029005A9250 /* LaunchScreen.xib in Resources */,
-				6EF2B74D1A67F58100D93862 /* C.wav in Resources */,
+				6ED4247B1A7498B400CD0C08 /* fpc_DrumAndBass_11.mid in Resources */,
+				6ED424861A7498B400CD0C08 /* fpc_DrumAndBass_22.mid in Resources */,
+				6ED424721A7498B400CD0C08 /* fpc_DrumAndBass_2.mid in Resources */,
+				6ED075DF1A751A0A00DEC1FD /* gm.dls in Resources */,
+				6ED424811A7498B400CD0C08 /* fpc_DrumAndBass_17.mid in Resources */,
+				6ED424741A7498B400CD0C08 /* fpc_DrumAndBass_4.mid in Resources */,
+				6ED424711A7498B400CD0C08 /* fpc_DrumAndBass_1.mid in Resources */,
+				6ED424881A7498B400CD0C08 /* fpc_DrumAndBass_24.mid in Resources */,
+				6ED4247C1A7498B400CD0C08 /* fpc_DrumAndBass_12.mid in Resources */,
+				6ED424851A7498B400CD0C08 /* fpc_DrumAndBass_21.mid in Resources */,
+				6ED424831A7498B400CD0C08 /* fpc_DrumAndBass_19.mid in Resources */,
+				6ED424841A7498B400CD0C08 /* fpc_DrumAndBass_20.mid in Resources */,
+				6ED424821A7498B400CD0C08 /* fpc_DrumAndBass_18.mid in Resources */,
+				6ED424781A7498B400CD0C08 /* fpc_DrumAndBass_8.mid in Resources */,
+				6ED424771A7498B400CD0C08 /* fpc_DrumAndBass_7.mid in Resources */,
 				6ECEBD401A3DD029005A9250 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
