@@ -60,7 +60,7 @@
     self.readCharacteristic=[[CBMutableCharacteristic alloc] initWithType:readCharacteristicUUID properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
     //创建写特征
     CBUUID *writeCharacgteristicUUID=[CBUUID UUIDWithString:kWriteCharacteristicUUID];
-    self.writeCharacteristic=[[CBMutableCharacteristic alloc] initWithType:writeCharacgteristicUUID properties:CBCharacteristicPropertyWrite value:nil permissions:CBAttributePermissionsWriteable];
+    self.writeCharacteristic=[[CBMutableCharacteristic alloc] initWithType:writeCharacgteristicUUID properties:CBCharacteristicPropertyWriteWithoutResponse value:nil permissions:CBAttributePermissionsWriteable];
     
     //创建服务
     CBUUID *serviceUUID=[CBUUID UUIDWithString:kServiceUUID];
@@ -109,6 +109,7 @@
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests {
     for (CBATTRequest *request in requests) {
         NSString *responseStr=[[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
+        NSLog(@"responseStr %@",responseStr);
         
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"中心传过来的数据" message:responseStr delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];

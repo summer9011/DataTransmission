@@ -45,7 +45,7 @@
         
         NSLog(@"canWrite Data %@",str);
         
-        [self.dele.discoveredPeripheral writeValue:[str dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.dele.discoveredWriteCharacteristic type:CBCharacteristicWriteWithResponse];
+        [self.dele.discoveredPeripheral writeValue:[str dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.dele.discoveredWriteCharacteristic type:CBCharacteristicWriteWithoutResponse];
     }
 }
 

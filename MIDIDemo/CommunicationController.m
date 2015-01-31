@@ -88,7 +88,10 @@
                 NSData *midiData=[[NSData alloc] initWithBase64EncodedString:dic[@"msg"] options:0];
                 
                 [self.dele.midiPlayer playMIDIData:midiData];
-                [self.dele.discoveredPeripheral writeValue:midiData forCharacteristic:self.dele.discoveredWriteCharacteristic type:CBCharacteristicWriteWithoutResponse];
+                
+                if (self.dele.canWrite) {
+                    [self.dele.discoveredPeripheral writeValue:midiData forCharacteristic:self.dele.discoveredWriteCharacteristic type:CBCharacteristicWriteWithoutResponse];
+                }
                 
             }
                 break;
