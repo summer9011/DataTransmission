@@ -12,8 +12,12 @@
 @interface SimulatorHardWareController () <CBPeripheralManagerDelegate>
 
 @property (nonatomic,strong) CBPeripheralManager *peripheralManager;
-@property (nonatomic,strong) CBMutableCharacteristic *customCharacteristic;
+
+@property (nonatomic,strong) CBMutableCharacteristic *readCharacteristic;           //读特征
+@property (nonatomic,strong) CBMutableCharacteristic *writeCharacteristic;          //写特征
+
 @property (nonatomic,strong) CBMutableService *customService;
+
 @property (nonatomic,strong) CBCentral *receiverCentral;
 
 @end
@@ -44,21 +48,25 @@
     NSData *midiData=[NSData dataWithContentsOfFile:midiPath];
     
     if (self.receiverCentral) {
-        [self.peripheralManager updateValue:midiData forCharacteristic:self.customCharacteristic onSubscribedCentrals:@[self.receiverCentral]];
+        [self.peripheralManager updateValue:midiData forCharacteristic:self.readCharacteristic onSubscribedCentrals:@[self.receiverCentral]];
     }else{
         NSLog(@"连接中心后重试");
     }
 }
 
 -(void)setupService {
-    //创建特征
-    CBUUID *characteristicUUID=[CBUUID UUIDWithString:kCharacteristicUUID];
-    self.customCharacteristic=[[CBMutableCharacteristic alloc] initWithType:characteristicUUID properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
+    //创建读特征
+    CBUUID *readCharacteristicUUID=[CBUUID UUIDWithString:kReadCharacteristicUUID];
+    self.readCharacteristic=[[CBMutableCharacteristic alloc] initWithType:readCharacteristicUUID properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
+    //创建写特征
+    CBUUID *writeCharacgteristicUUID=[CBUUID UUIDWithString:kWriteCharacteristicUUID];
+    self.writeCharacteristic=[[CBMutableCharacteristic alloc] initWithType:writeCharacgteristicUUID properties:CBCharacteristicPropertyWrite value:nil permissions:CBAttributePermissionsWriteable];
+    
     //创建服务
     CBUUID *serviceUUID=[CBUUID UUIDWithString:kServiceUUID];
     self.customService=[[CBMutableService alloc] initWithType:serviceUUID primary:YES];
     //给服务设置特征
-    [self.customService setCharacteristics:@[self.customCharacteristic]];
+    [self.customService setCharacteristics:@[self.readCharacteristic,self.writeCharacteristic]];
     //发布服务
     [self.peripheralManager addService:self.customService];
 }
@@ -98,5 +106,13 @@
     self.receiverCentral=central;
 }
 
+- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests {
+    for (CBATTRequest *request in requests) {
+        NSString *responseStr=[[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
+        
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"中心传过来的数据" message:responseStr delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
 
 @end

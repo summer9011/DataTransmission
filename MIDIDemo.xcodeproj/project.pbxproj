@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E6F1FE11A7CC29900E93A2F /* WriteValeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F1FE01A7CC29900E93A2F /* WriteValeController.m */; };
 		6ECEBD351A3DD029005A9250 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEBD341A3DD029005A9250 /* main.m */; };
 		6ECEBD381A3DD029005A9250 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEBD371A3DD029005A9250 /* AppDelegate.mm */; };
 		6ECEBD3E1A3DD029005A9250 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ECEBD3C1A3DD029005A9250 /* Main.storyboard */; };
@@ -65,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E6F1FDF1A7CC29900E93A2F /* WriteValeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteValeController.h; sourceTree = "<group>"; };
+		6E6F1FE01A7CC29900E93A2F /* WriteValeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteValeController.m; sourceTree = "<group>"; };
 		6ECEBD2F1A3DD029005A9250 /* MIDIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECEBD331A3DD029005A9250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECEBD341A3DD029005A9250 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -186,12 +189,14 @@
 				6ECEBD371A3DD029005A9250 /* AppDelegate.mm */,
 				6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */,
 				6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */,
-				6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */,
-				6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */,
 				6EE06D821A611A36003CDF38 /* ChoosePlayerController.h */,
 				6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */,
 				6EE06D851A611CA3003CDF38 /* CommunicationController.h */,
 				6EE06D861A611CA3003CDF38 /* CommunicationController.m */,
+				6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */,
+				6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */,
+				6E6F1FDF1A7CC29900E93A2F /* WriteValeController.h */,
+				6E6F1FE01A7CC29900E93A2F /* WriteValeController.m */,
 				6ECEBD3C1A3DD029005A9250 /* Main.storyboard */,
 				6ECEBD3F1A3DD029005A9250 /* Images.xcassets */,
 				6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */,
@@ -493,6 +498,7 @@
 				6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */,
 				6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */,
 				6ECEBD351A3DD029005A9250 /* main.m in Sources */,
+				6E6F1FE11A7CC29900E93A2F /* WriteValeController.m in Sources */,
 				6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */,
 				6EE472391A623AB20046287F /* AsyncSocket.m in Sources */,
 			);

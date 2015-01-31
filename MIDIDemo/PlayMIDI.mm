@@ -100,10 +100,8 @@ void ERRCHECK(FMOD_RESULT result) {
         soundExInfo.cbsize=sizeof(FMOD_CREATESOUNDEXINFO);
         soundExInfo.dlsname=[GMPath UTF8String];
         
-        char *midi=(char *)[data bytes];
-        
         //添加第一个MIDI文件
-        result=system->createStream(midi, FMOD_CREATESTREAM, &soundExInfo, &sound);
+        result=system->createSound((const char *)[data bytes], FMOD_OPENMEMORY, &soundExInfo, &sound);
         ERRCHECK(result);
         result=sound->setMode(FMOD_LOOP_OFF);
         ERRCHECK(result);

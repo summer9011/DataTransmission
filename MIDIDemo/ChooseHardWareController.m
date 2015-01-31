@@ -60,9 +60,9 @@ static NSString *CellIdentifier=@"HardWareCell";
 - (IBAction)goSimulatorHardWare:(id)sender {
     self.dele.centralManager.delegate=nil;
     
-    if (self.dele.peripheral) {
-        self.dele.peripheral.delegate=nil;
-        self.dele.peripheral=nil;
+    if (self.dele.discoveredPeripheral) {
+        self.dele.discoveredPeripheral.delegate=nil;
+        self.dele.discoveredPeripheral=nil;
     }
     
     UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -93,8 +93,8 @@ static NSString *CellIdentifier=@"HardWareCell";
     CBPeripheral *peripheral=(CBPeripheral *)self.peripheralArr[indexPath.row];
     NSLog(@"连接到外设:%@",peripheral);
     
-    self.dele.peripheral=peripheral;
-    [self.dele.centralManager connectPeripheral:self.dele.peripheral options:nil];
+    self.dele.discoveredPeripheral=peripheral;
+    [self.dele.centralManager connectPeripheral:self.dele.discoveredPeripheral options:nil];
 }
 
 #pragma mark - CBConnectionDelegate

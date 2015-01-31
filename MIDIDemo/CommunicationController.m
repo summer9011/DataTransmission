@@ -27,7 +27,7 @@
     self.dele=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.dele.ASDelegate=self;
     
-    self.hardwareLabel.text=self.dele.peripheral.name;
+    self.hardwareLabel.text=self.dele.discoveredPeripheral.name;
     
     NSMutableString *str=[NSMutableString stringWithFormat:@"%@(自己)",self.dele.ownerID];
     for (NSString *receiver in self.dele.recevierList) {
@@ -53,7 +53,7 @@
     [self.dele.recevierList removeAllObjects];
     [self.dele.asyncSocket disconnect];
     
-    [self.dele.centralManager cancelPeripheralConnection:self.dele.peripheral];
+    [self.dele.centralManager cancelPeripheralConnection:self.dele.discoveredPeripheral];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -88,6 +88,7 @@
                 NSData *midiData=[[NSData alloc] initWithBase64EncodedString:dic[@"msg"] options:0];
                 
                 [self.dele.midiPlayer playMIDIData:midiData];
+                [self.dele.discoveredPeripheral writeValue:midiData forCharacteristic:self.dele.discoveredWriteCharacteristic type:CBCharacteristicWriteWithoutResponse];
                 
             }
                 break;

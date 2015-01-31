@@ -21,9 +21,7 @@
     //设置应用保持常亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    NSLog(@"%@",[[NSBundle mainBundle] pathForResource:@"gm" ofType:@"dls"]);
-    
-    midiPlayer=[[PlayMIDI alloc] initWithFMOD];
+    midiPlayer=[[PlayMIDI alloc] initWithAVMIDIPlayer];
     
     return YES;
 }
@@ -73,10 +71,10 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"成功连接到外设:%@",peripheral);
     
-    [self.peripheral setDelegate:self];
+    [self.discoveredPeripheral setDelegate:self];
     
     //请求外设寻找服务
-    [self.peripheral discoverServices:@[[CBUUID UUIDWithString:kServiceUUID]]];
+    [self.discoveredPeripheral discoverServices:@[[CBUUID UUIDWithString:kServiceUUID]]];
     
     if ([self.CBDelegate respondsToSelector:@selector(didConnectedPeripheral)]) {
         [self.CBDelegate didConnectedPeripheral];
@@ -101,9 +99,12 @@
     }
     
     for (CBService *service in peripheral.services) {
-        NSLog(@"找到的serviceUUID %@",service.UUID);
         if ([service.UUID isEqual:[CBUUID UUIDWithString:kServiceUUID]]) {
-            [service.peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:kCharacteristicUUID]] forService:service];
+            NSLog(@"serviceUUID %@",service.UUID);
+            
+            self.discoveredService=service;
+            [service.peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:kReadCharacteristicUUID],[CBUUID UUIDWithString:kWriteCharacteristicUUID]] forService:service];
+            break;
         }
     }
 }
@@ -114,10 +115,22 @@
         [alert show];
     }
     
-    if ([service.UUID isEqual:[CBUUID UUIDWithString:kServiceUUID]]) {
+    if (self.discoveredService&&[service.UUID isEqual:[CBUUID UUIDWithString:kServiceUUID]]) {
         for (CBCharacteristic *characteristic in service.characteristics) {
-            if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacteristicUUID]]) {
+            if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kReadCharacteristicUUID]]) {
+                NSLog(@"readCharacteristic %@",characteristic.UUID);
+                //发现读特征
+                self.discoveredReadCharacteristic=characteristic;
+                self.canRead=YES;
                 [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            }
+            
+            //发现写特征
+            if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kWriteCharacteristicUUID]]) {
+                NSLog(@"writeCharacteristic %@",characteristic.UUID);
+                //发现读特征
+                self.discoveredWriteCharacteristic=characteristic;
+                self.canWrite=YES;
             }
         }
     }
@@ -125,7 +138,7 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     
-    if (![characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacteristicUUID]]) {
+    if (![characteristic.UUID isEqual:[CBUUID UUIDWithString:kReadCharacteristicUUID]]) {
         return;
     }
     
@@ -137,6 +150,11 @@
     
 }
 
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    NSLog(@"didWriteValueForCharacteristic");
+    NSLog(@"peripheral %@, characteristic %@",peripheral,characteristic);
+}
+
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     NSLog(@"特征 %@ 更新了值 错误 %@",characteristic,error);
     if (error) {
@@ -144,7 +162,7 @@
         [alert show];
     }
     
-    if (![characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacteristicUUID]]) {
+    if (![characteristic.UUID isEqual:[CBUUID UUIDWithString:kReadCharacteristicUUID]]) {
         return;
     }
     
@@ -153,7 +171,7 @@
         [peripheral readValueForCharacteristic:characteristic];
     }else{
         NSLog(@"Notification stopped on %@ disconnecting",characteristic);
-        [self.centralManager cancelPeripheralConnection:self.peripheral];
+        [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
     }
 }
 

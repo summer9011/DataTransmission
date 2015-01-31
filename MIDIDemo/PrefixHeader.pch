@@ -13,7 +13,9 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #define kServiceUUID @"66DAEB9F-99E6-4F3C-A726-EEE92E9AA558"
-#define kCharacteristicUUID @"6CDF1ACA-9931-4038-B438-DFEC4066F256"
+
+#define kReadCharacteristicUUID @"6CDF1ACA-9931-4038-B438-DFEC4066F256"
+#define kWriteCharacteristicUUID @"3FEAAF34-298F-42DA-A02B-D578FE1277BE"
 
 //workerman socket
 #define IP @"192.168.1.103"

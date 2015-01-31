@@ -46,7 +46,14 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic,strong) CBCentralManager *centralManager;
-@property (nonatomic,strong) CBPeripheral *peripheral;
+
+@property (nonatomic,strong) CBPeripheral *discoveredPeripheral;
+@property (nonatomic,strong) CBService *discoveredService;
+@property (nonatomic,strong) CBCharacteristic *discoveredReadCharacteristic;
+@property (nonatomic,assign) BOOL canRead;
+@property (nonatomic,strong) CBCharacteristic *discoveredWriteCharacteristic;
+@property (nonatomic,assign) BOOL canWrite;
+
 @property (nonatomic,strong) id<CBConnectionDelegate> CBDelegate;
 
 @property (nonatomic,strong) AsyncSocket *asyncSocket;
