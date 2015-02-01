@@ -24,6 +24,8 @@
     self.dele=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.dele.CBDelegate=self;
     self.dele.ASDelegate=self;
+    
+    [self.view addSubview:self.dele.midiPlayer.midiWeb];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -49,6 +51,13 @@
     }
 }
 
+- (IBAction)playMIDI:(id)sender {
+    NSString *temp=[[NSBundle mainBundle] pathForResource:@"fpc_DrumAndBass_10" ofType:@"mid"];
+    NSData *tempData=[NSData dataWithContentsOfFile:temp];
+
+    [self.dele.midiPlayer playMIDIData:tempData];
+}
+
 -(void)connectToPeripheral {
     NSLog(@"%@",self.dele.discoveredPeripheral);
     if (self.dele.discoveredPeripheral) {
@@ -72,11 +81,6 @@
 
 //向另一方发送数据
 -(void)didSendData:(NSData *)data FromPeripheral:(CBPeripheral *)peripheral {
-//    NSString *tempPath=[self.dele.cachePath stringByAppendingPathComponent:@"temp.mid"];
-//    [data writeToFile:tempPath atomically:YES];
-//    
-//    [self.dele.midiPlayer playMIDIWithPath:tempPath];
-    
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"外设传过来的数据" message:[NSString stringWithFormat:@"%@",data] delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
     [alert show];
 }

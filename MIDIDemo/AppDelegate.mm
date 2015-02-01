@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CustomURLCache.h"
 
 @interface AppDelegate ()
 
@@ -18,8 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.recevierList=[NSMutableArray array];
     
-    self.cachePath=NSTemporaryDirectory();
-    NSLog(@"%@",self.cachePath);
+    [NSURLCache setSharedURLCache:[[CustomURLCache alloc] init]];
     
     //设置应用保持常亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
@@ -190,7 +190,7 @@
     
     [sock readDataWithTimeout:-1 tag:1];
     
-    heartBeatTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(longConnectToSocket) userInfo:nil repeats:YES];
+    heartBeatTimer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(longConnectToSocket) userInfo:nil repeats:YES];
     [heartBeatTimer fire];
 }
 

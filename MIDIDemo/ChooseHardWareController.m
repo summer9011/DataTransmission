@@ -37,7 +37,6 @@ static NSString *CellIdentifier=@"HardWareCell";
     self.dele.CBDelegate=self;
     
     self.dele.centralManager=[[CBCentralManager alloc] initWithDelegate:self.dele queue:nil];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -47,14 +46,6 @@ static NSString *CellIdentifier=@"HardWareCell";
         self.dele.centralManager.delegate=self.dele;
     }
 }
-
-- (IBAction)playMIDITest:(id)sender {
-    NSString *midiFilePath=[[NSBundle mainBundle] pathForResource:@"fpc_DrumAndBass_10" ofType:@"mid"];
-    NSData *midiData=[NSData dataWithContentsOfFile:midiFilePath];
-    
-    [self.dele.midiPlayer playMIDIData:midiData];
-}
-
 
 //进入模拟
 - (IBAction)goSimulatorHardWare:(id)sender {

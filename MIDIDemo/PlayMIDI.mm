@@ -75,6 +75,15 @@ void ERRCHECK(FMOD_RESULT result) {
     if (self) {
         isUseHTML5=YES;
         
+        [SVProgressHUD showWithStatus:@"初始化MIDI播放器..." maskType:SVProgressHUDMaskTypeClear];
+        
+        self.midiWeb=[[UIWebView alloc] initWithFrame:CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 400)];
+        NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/MIDIPlayer.html",HTML5IP]];
+        NSURLRequest *request=[NSURLRequest requestWithURL:url];
+        self.midiWeb.scrollView.bounces=NO;
+        self.midiWeb.delegate=(id<UIWebViewDelegate>)self;
+        [self.midiWeb loadRequest:request];
+        
     }
     return self;
 }
@@ -111,7 +120,10 @@ void ERRCHECK(FMOD_RESULT result) {
     
     //使用HTML5播放
     if (isUseHTML5) {
-        NSLog(@"use html5");
+        NSString *base64MIDI=[data base64EncodedStringWithOptions:0];
+        NSString *base64Data=[@"data:audio/midi;base64," stringByAppendingString:base64MIDI];
+        NSString *urlStr = [NSString stringWithFormat:@"setSong(\"%@\")",base64Data];
+        [self.midiWeb stringByEvaluatingJavaScriptFromString:urlStr];
     }
     
     //使用AVMIDIPlayer播放
@@ -155,22 +167,24 @@ void ERRCHECK(FMOD_RESULT result) {
     }
 }
 
-//播放wav格式文件，不播放MIDI
-+(void)playSoundWithWAV:(NSString *)resourceName {
-    NSString *path = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"wav"];
-    if (path) {
-        SystemSoundID theSoundID;
-        OSStatus error =  AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSoundID);
-        if (error == kAudioServicesNoError) {
-            AudioServicesPlaySystemSound(theSoundID);
-        }else {
-            NSLog(@"Failed to create sound ");
-        }
-    }else{
-        NSLog(@"no wav file :%@",resourceName);
-    }
-    
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(@"允许加载请求 %@",request.URL.absoluteString);
+    return YES;
 }
 
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    NSLog(@"开始加载");
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"完成加载");
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"初始化MIDI播放器失败" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+    [alert show];
+}
 
 @end

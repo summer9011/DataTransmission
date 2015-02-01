@@ -10,6 +10,8 @@
 
 @interface PlayMIDI : NSObject
 
+@property (nonatomic,strong) UIWebView *midiWeb;
+
 //使用FMOD播放MIDI
 -(id)initWithFMOD;
 
@@ -24,8 +26,5 @@
 
 //播放MIDI文件
 -(void)playMIDIWithPath:(NSString *)resourcePath;
-
-//播放wav格式文件，不播放MIDI
-+(void)playSoundWithWAV:(NSString *)resourceName;
 
 @end
