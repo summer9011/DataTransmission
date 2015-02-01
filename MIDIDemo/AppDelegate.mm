@@ -18,10 +18,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.recevierList=[NSMutableArray array];
     
+    self.cachePath=NSTemporaryDirectory();
+    NSLog(@"%@",self.cachePath);
+    
     //设置应用保持常亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    midiPlayer=[[PlayMIDI alloc] initWithAVMIDIPlayer];
+    midiPlayer=[[PlayMIDI alloc] initWithHTML5];
     
     return YES;
 }
@@ -117,9 +120,9 @@
     
     if (self.discoveredService&&[service.UUID isEqual:[CBUUID UUIDWithString:kServiceUUID]]) {
         for (CBCharacteristic *characteristic in service.characteristics) {
+            //发现读特征
             if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kReadCharacteristicUUID]]) {
                 NSLog(@"readCharacteristic %@",characteristic.UUID);
-                //发现读特征
                 self.discoveredReadCharacteristic=characteristic;
                 self.canRead=YES;
                 [peripheral setNotifyValue:YES forCharacteristic:characteristic];

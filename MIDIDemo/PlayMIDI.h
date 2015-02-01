@@ -19,8 +19,11 @@
 //使用AVMIDIPlayer播放MIDI
 -(id)initWithAVMIDIPlayer;
 
-//播放MIDI文件
+//播放MIDIData
 -(void)playMIDIData:(NSData *)data;
+
+//播放MIDI文件
+-(void)playMIDIWithPath:(NSString *)resourcePath;
 
 //播放wav格式文件，不播放MIDI
 +(void)playSoundWithWAV:(NSString *)resourceName;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E6F1FE11A7CC29900E93A2F /* WriteValeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F1FE01A7CC29900E93A2F /* WriteValeController.m */; };
+		6E6F1FE61A7DBA0300E93A2F /* snare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6E6F1FE51A7DBA0300E93A2F /* snare.wav */; };
 		6ECEBD351A3DD029005A9250 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEBD341A3DD029005A9250 /* main.m */; };
 		6ECEBD381A3DD029005A9250 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEBD371A3DD029005A9250 /* AppDelegate.mm */; };
 		6ECEBD3E1A3DD029005A9250 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ECEBD3C1A3DD029005A9250 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		6E6F1FDF1A7CC29900E93A2F /* WriteValeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteValeController.h; sourceTree = "<group>"; };
 		6E6F1FE01A7CC29900E93A2F /* WriteValeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteValeController.m; sourceTree = "<group>"; };
+		6E6F1FE51A7DBA0300E93A2F /* snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = snare.wav; sourceTree = "<group>"; };
 		6ECEBD2F1A3DD029005A9250 /* MIDIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECEBD331A3DD029005A9250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECEBD341A3DD029005A9250 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -162,6 +164,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E6F1FE21A7D0E0300E93A2F /* 模拟与测试 */ = {
+			isa = PBXGroup;
+			children = (
+				6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */,
+				6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */,
+				6E6F1FDF1A7CC29900E93A2F /* WriteValeController.h */,
+				6E6F1FE01A7CC29900E93A2F /* WriteValeController.m */,
+			);
+			name = "模拟与测试";
+			sourceTree = "<group>";
+		};
 		6ECEBD261A3DD029005A9250 = {
 			isa = PBXGroup;
 			children = (
@@ -193,10 +206,7 @@
 				6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */,
 				6EE06D851A611CA3003CDF38 /* CommunicationController.h */,
 				6EE06D861A611CA3003CDF38 /* CommunicationController.m */,
-				6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */,
-				6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */,
-				6E6F1FDF1A7CC29900E93A2F /* WriteValeController.h */,
-				6E6F1FE01A7CC29900E93A2F /* WriteValeController.m */,
+				6E6F1FE21A7D0E0300E93A2F /* 模拟与测试 */,
 				6ECEBD3C1A3DD029005A9250 /* Main.storyboard */,
 				6ECEBD3F1A3DD029005A9250 /* Images.xcassets */,
 				6ECEBD411A3DD029005A9250 /* LaunchScreen.xib */,
@@ -239,6 +249,7 @@
 		6ECEDB171A693C450036C384 /* 音色库 */ = {
 			isa = PBXGroup;
 			children = (
+				6E6F1FE51A7DBA0300E93A2F /* snare.wav */,
 				6ECEDB181A693C4E0036C384 /* 测试 */,
 			);
 			name = "音色库";
@@ -471,6 +482,7 @@
 				6ED424831A7498B400CD0C08 /* fpc_DrumAndBass_19.mid in Resources */,
 				6ED424841A7498B400CD0C08 /* fpc_DrumAndBass_20.mid in Resources */,
 				6ED424821A7498B400CD0C08 /* fpc_DrumAndBass_18.mid in Resources */,
+				6E6F1FE61A7DBA0300E93A2F /* snare.wav in Resources */,
 				6ED424781A7498B400CD0C08 /* fpc_DrumAndBass_8.mid in Resources */,
 				6ED424771A7498B400CD0C08 /* fpc_DrumAndBass_7.mid in Resources */,
 				6ECEBD401A3DD029005A9250 /* Images.xcassets in Resources */,

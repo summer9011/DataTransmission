@@ -72,6 +72,11 @@
 
 //向另一方发送数据
 -(void)didSendData:(NSData *)data FromPeripheral:(CBPeripheral *)peripheral {
+//    NSString *tempPath=[self.dele.cachePath stringByAppendingPathComponent:@"temp.mid"];
+//    [data writeToFile:tempPath atomically:YES];
+//    
+//    [self.dele.midiPlayer playMIDIWithPath:tempPath];
+    
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"外设传过来的数据" message:[NSString stringWithFormat:@"%@",data] delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
     [alert show];
 }

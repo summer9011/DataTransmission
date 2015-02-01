@@ -88,7 +88,7 @@ void ERRCHECK(FMOD_RESULT result) {
     return self;
 }
 
-//播放MIDI文件
+//播放MIDIData
 -(void)playMIDIData:(NSData *)data {
     NSString *GMPath=[[NSBundle mainBundle] pathForResource:@"gm" ofType:@"dls"];
     
@@ -101,9 +101,7 @@ void ERRCHECK(FMOD_RESULT result) {
         soundExInfo.dlsname=[GMPath UTF8String];
         
         //添加第一个MIDI文件
-        result=system->createSound((const char *)[data bytes], FMOD_OPENMEMORY, &soundExInfo, &sound);
-        ERRCHECK(result);
-        result=sound->setMode(FMOD_LOOP_OFF);
+        result=system->createSound((const char *)[data bytes], FMOD_DEFAULT|FMOD_LOOP_OFF, &soundExInfo, &sound);
         ERRCHECK(result);
         
         //播放
@@ -132,8 +130,28 @@ void ERRCHECK(FMOD_RESULT result) {
         }else{
             NSLog(@"error %@",error);
         }
+    }
+}
+
+//播放MIDI文件
+-(void)playMIDIWithPath:(NSString *)resourcePath {
+    NSString *GMPath=[[NSBundle mainBundle] pathForResource:@"gm" ofType:@"dls"];
+    
+    //使用FMOD播放
+    if (isUseFMOD) {
+        //设置dls文件
+        FMOD_CREATESOUNDEXINFO soundExInfo;
+        memset(&soundExInfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
+        soundExInfo.cbsize=sizeof(FMOD_CREATESOUNDEXINFO);
+        soundExInfo.dlsname=[GMPath UTF8String];
         
+        //添加第一个MIDI文件
+        result=system->createSound([resourcePath UTF8String], FMOD_DEFAULT|FMOD_LOOP_OFF, &soundExInfo, &sound);
+        ERRCHECK(result);
         
+        //播放
+        result=system->playSound(sound, 0, false, &channel);
+        ERRCHECK(result);
     }
 }
 

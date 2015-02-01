@@ -65,5 +65,7 @@
 
 @property (nonatomic,strong) PlayMIDI *midiPlayer;
 
+@property (nonatomic,strong) NSString *cachePath;
+
 @end
 

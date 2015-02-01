@@ -18,7 +18,7 @@
 #define kWriteCharacteristicUUID @"3FEAAF34-298F-42DA-A02B-D578FE1277BE"
 
 //workerman socket
-#define IP @"192.168.1.103"
+#define IP @"121.40.129.209"
 #define PORT 8480
 
 #endif
