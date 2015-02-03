@@ -72,13 +72,13 @@ MIDI.loadPlugin = function(conf) {
 var connect = {};
 
 connect.webmidi = function(filetype, instruments, conf) {
-	if (MIDI.loader) MIDI.loader.message("Web MIDI API...");
+	// if (MIDI.loader) MIDI.loader.message("Web MIDI API...");
 	MIDI.WebMIDI.connect(conf);
 };
 
 connect.flash = function(filetype, instruments, conf) {
 	// fairly quick, but requires loading of individual MP3s (more http requests).
-	if (MIDI.loader) MIDI.loader.message("Flash API...");
+	// if (MIDI.loader) MIDI.loader.message("Flash API...");
 	DOMLoader.script.add({
 		src: conf.soundManagerUrl || "./inc/SoundManager2/script/soundmanager2.js",
 		verify: "SoundManager",
@@ -89,7 +89,7 @@ connect.flash = function(filetype, instruments, conf) {
 };
 
 connect.audiotag = function(filetype, instruments, conf) {
-	if (MIDI.loader) MIDI.loader.message("HTML5 Audio API...");
+	// if (MIDI.loader) MIDI.loader.message("HTML5 Audio API...");
 	// works ok, kinda like a drunken tuna fish, across the board.
 	var queue = createQueue({
 		items: instruments,
@@ -99,7 +99,7 @@ connect.audiotag = function(filetype, instruments, conf) {
 				onprogress: getPercent,
 				onload: function (response) {
 					addSoundfont(response.responseText);
-					if (MIDI.loader) MIDI.loader.update(null, "Downloading", 100);
+					// if (MIDI.loader) MIDI.loader.update(null, "Downloading", 100);
 					queue.getNext();
 				}
 			});
@@ -111,17 +111,18 @@ connect.audiotag = function(filetype, instruments, conf) {
 };
 
 connect.webaudio = function(filetype, instruments, conf) {
-	if (MIDI.loader) MIDI.loader.message("Web Audio API...");
+	// if (MIDI.loader) MIDI.loader.message("Web Audio API...");
 	// works awesome! safari, chrome and firefox support.
 	var queue = createQueue({
 		items: instruments,
-		getNext: function(instrumentId) {
+        getNext: function(instrumentId) {
+            // alert("webaudio "+MIDI.soundfontUrl+","+instrumentId+","+filetype);
 			DOMLoader.sendRequest({
 				url: MIDI.soundfontUrl + instrumentId + "-" + filetype + ".js",
 				onprogress: getPercent,
-				onload: function(response) {
+              	onload: function(response) {
 					addSoundfont(response.responseText);
-					if (MIDI.loader) MIDI.loader.update(null, "Downloading...", 100);
+					// if (MIDI.loader) MIDI.loader.update(null, "Downloading...", 100);
 					queue.getNext();
 				}
 			});
@@ -159,7 +160,7 @@ var getPercent = function(event) {
 	}
 	///
 	var percent = this.totalSize ? Math.round(event.loaded / this.totalSize * 100) : "";
-	if (MIDI.loader) MIDI.loader.update(null, "Downloading...", percent);
+	// if (MIDI.loader) MIDI.loader.update(null, "Downloading...", percent);
 };
 
 var createQueue = function(conf) {

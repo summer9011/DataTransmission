@@ -73,10 +73,12 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
 }
 
 - (IBAction)goBack:(id)sender {
-    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%d\",\"clientid\":%d}\n",6,0,[self.dele.recevierList[0] intValue]];
-    NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
     
-    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:6];
+    if (self.dele.recevierList.count>0) {
+        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%d\",\"clientid\":%d}\n",6,0,[self.dele.recevierList[0] intValue]];
+        NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
+        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:6];
+    }
     
     [self.dele.heartBeatTimer invalidate];
     [self.dele.recevierList removeAllObjects];

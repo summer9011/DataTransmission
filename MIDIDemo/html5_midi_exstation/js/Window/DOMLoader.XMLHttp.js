@@ -115,7 +115,10 @@ if (typeof ((new XMLHttpRequest()).responseText) === "undefined") {
 		if (conf.onprogress) req.onprogress = conf.onprogress;
 		req.onreadystatechange = function (event) {
 			if (req.readyState === 4) {
-				if (req.status !== 200 && req.status != 304) {
+				// alert("req.status "+req.status);
+				if (req.status===0) {
+
+				}else if (req.status !== 200 && req.status != 304) {
 					if (conf.onerror) conf.onerror(event, false);
 					return;
 				}

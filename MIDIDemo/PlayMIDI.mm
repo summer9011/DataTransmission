@@ -78,7 +78,7 @@ void ERRCHECK(FMOD_RESULT result) {
         [SVProgressHUD showWithStatus:@"初始化MIDI播放器..." maskType:SVProgressHUDMaskTypeClear];
         
         self.midiWeb=[[UIWebView alloc] initWithFrame:CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 400)];
-        NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/MIDIPlayer.html",HTML5IP]];
+        NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/MIDIPlayer.html",IP]];
         NSURLRequest *request=[NSURLRequest requestWithURL:url];
         self.midiWeb.scrollView.bounces=NO;
         self.midiWeb.delegate=(id<UIWebViewDelegate>)self;

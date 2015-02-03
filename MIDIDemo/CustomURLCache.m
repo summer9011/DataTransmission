@@ -17,14 +17,13 @@
     NSString *fileName=request.URL.relativePath.lastPathComponent;
     NSString *resourcePath=[[NSBundle mainBundle] pathForResource:fileName ofType:@""];
     
-    if ([fileName isEqualToString:@"acoustic_grand_piano-mp3.js"]) {
-        [SVProgressHUD dismissWithSuccess:@"完成"];
-        return nil;
-    }
-    
     if (resourcePath) {
         NSData *data=[NSData dataWithContentsOfFile:resourcePath];
         NSURLResponse *response=[[NSURLResponse alloc] initWithURL:[request URL] MIMEType:MIMEType[ext] expectedContentLength:data.length textEncodingName:nil];
+        
+        if ([fileName isEqualToString:@"acoustic_grand_piano-mp3.js"]) {
+            [SVProgressHUD dismissWithSuccess:@"完成"];
+        }
         
         return [[NSCachedURLResponse alloc] initWithResponse:response data:data];
     }

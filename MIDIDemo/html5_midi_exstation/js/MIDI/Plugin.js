@@ -146,7 +146,7 @@ if (window.AudioContext || window.webkitAudioContext) (function () {
 			var msg = url;
 			while (msg.length < 3) msg += "&nbsp;";
 			if (typeof (MIDI.loader) !== "undefined") {
-				MIDI.loader.update(null, synth.instrument + "<br>Processing: " + (index / 87 * 100 >> 0) + "%<br>" + msg);
+				// MIDI.loader.update(null, synth.instrument + "<br>Processing: " + (index / 87 * 100 >> 0) + "%<br>" + msg);
 			}
 			buffer.id = url;
 			bufferList[index] = buffer;
@@ -510,7 +510,7 @@ if (window.Audio) (function () {
 				var onload = function () {
 					loaded.push(this.sID);
 					if (typeof (MIDI.loader) === "undefined") return;
-					MIDI.loader.update(null, "Processing: " + this.sID);
+					// MIDI.loader.update(null, "Processing: " + this.sID);
 				};
 				for (var j = 0; j < samplesPerInstrument; j++) {
 					var id = noteReverse[j + 21];
