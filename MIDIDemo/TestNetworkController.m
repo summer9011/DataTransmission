@@ -152,60 +152,51 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
     NSLog(@"成功连接到Socket");
 }
 
--(void)didReadData:(NSData *)data {
-    NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *tempArr=[str componentsSeparatedByString:@"\n"];
+-(void)didReadData:(NSData *)jsonData {
+    NSError *error;
+    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"dic %@",dic);
     
-    NSMutableArray *strArr=[tempArr mutableCopy];
-    [strArr removeLastObject];
     
-    for (NSString *str in strArr) {
-        NSLog(@"%@",str);
-        
-        NSError *error;
-        NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
-        
-        switch ([dic[@"code"] intValue]) {
-            case 1:             //获取欢迎
-                self.dele.ownerID=dic[@"currentid"];
-                
-                break;
-            case 2:{            //获取用户列表
-                dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
-                NSArray *arr=[NSJSONSerialization JSONObjectWithData:[dic[@"msg"] dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-                
-                [self.playerArr removeAllObjects];
-                [self.playerArr addObjectsFromArray:arr];
-                
-                [self.table reloadData];
-            }
-                break;
-            case 4:{            //建立聊天窗口
-                if (dic[@"from"]) {
-                    [self.dele.recevierList removeAllObjects];
-                    [self.dele.recevierList addObject:[NSString stringWithFormat:@"%@",dic[@"from"]]];
-                }
-            }
-                break;
-            case 5:{            //发送数据
-                NSDate *current=[NSDate date];
-                double diff=current.timeIntervalSince1970-[dic[@"clickTime"] doubleValue];
-                
-                self.dataLabel.text=[NSString stringWithFormat:@"%@",dic[@"msg"]];
-                self.startTime.text=[NSString stringWithFormat:@"%fs",[dic[@"clickTime"] doubleValue]];
-                self.endTime.text=[NSString stringWithFormat:@"%fs",current.timeIntervalSince1970];
-                self.diffTime.text=[NSString stringWithFormat:@"%fms",diff*1000];
-            }
-                break;
-            case 6:{            //一方退出
-                if (dic[@"clientid"]) {
-                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"ID:%@ 已退出",dic[@"clientid"]] message:@"队友都走了，你还留着干什么？" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-                    [alert show];
-                }
-                
-            }
-                break;
+    switch ([dic[@"code"] intValue]) {
+        case 1:             //获取欢迎
+            self.dele.ownerID=[NSString stringWithFormat:@"%@",dic[@"currentid"]];
+            
+            break;
+        case 2:{            //获取用户列表
+            NSArray *arr=dic[@"msg"];
+            
+            [self.playerArr removeAllObjects];
+            [self.playerArr addObjectsFromArray:arr];
+            
+            [self.table reloadData];
         }
+            break;
+        case 4:{            //建立聊天窗口
+            if (dic[@"from"]) {
+                [self.dele.recevierList removeAllObjects];
+                [self.dele.recevierList addObject:[NSString stringWithFormat:@"%@",dic[@"from"]]];
+            }
+        }
+            break;
+        case 5:{            //发送数据
+            NSDate *current=[NSDate date];
+            double diff=current.timeIntervalSince1970-[dic[@"clickTime"] doubleValue];
+            
+            self.dataLabel.text=[NSString stringWithFormat:@"%@",dic[@"msg"]];
+            self.startTime.text=[NSString stringWithFormat:@"%fs",[dic[@"clickTime"] doubleValue]];
+            self.endTime.text=[NSString stringWithFormat:@"%fs",current.timeIntervalSince1970];
+            self.diffTime.text=[NSString stringWithFormat:@"%fms",diff*1000];
+        }
+            break;
+        case 6:{            //一方退出
+            if (dic[@"clientid"]) {
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"ID:%@ 已退出",dic[@"clientid"]] message:@"队友都走了，你还留着干什么？" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            
+        }
+            break;
     }
     
 }

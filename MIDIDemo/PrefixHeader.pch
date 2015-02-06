@@ -20,10 +20,10 @@
 #define kWriteCharacteristicUUID @"3FEAAF34-298F-42DA-A02B-D578FE1277BE"
 
 //workerman socket
-#define IP @"121.40.129.209"
-#define PORT 8480
+//#define IP @"121.40.129.209"
+#define IP @"172.16.66.128"
 
-#define HTML5IP @"192.168.1.248:89"
+#define PORT 8480
 
 #import "SVProgressHUD.h"
 

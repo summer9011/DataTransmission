@@ -60,50 +60,40 @@
 
 #pragma mark - ASConnectionDelegate
 
--(void)didReadData:(NSData *)data {
-    NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *tempArr=[str componentsSeparatedByString:@"\n"];
+-(void)didReadData:(NSData *)jsonData {
+    NSError *error;
+    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
     
-    NSMutableArray *strArr=[tempArr mutableCopy];
-    [strArr removeLastObject];
-    
-    for (NSString *str in strArr) {
-        NSLog(@"%@",str);
-        
-        NSError *error;
-        NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
-        
-        switch ([dic[@"code"] intValue]) {
-            case 5:{            //发送数据
-                NSDate *current=[NSDate date];
-                double diff=current.timeIntervalSince1970-[dic[@"clickTime"] doubleValue];
-                
-                NSString *oldStr=self.msgView.text;
-                if ([oldStr isEqualToString:@""]) {
-                    self.msgView.text=[NSString stringWithFormat:@"(%@,%f)",dic[@"msg"],diff];
-                }else{
-                    self.msgView.text=[NSString stringWithFormat:@"%@;(%@,%f)",oldStr,dic[@"msg"],diff];
-                }
-                
-                NSData *midiData=[[NSData alloc] initWithBase64EncodedString:dic[@"msg"] options:0];
-                
-                [self.dele.midiPlayer playMIDIData:midiData];
-                
-                if (self.dele.canWrite) {
-                    [self.dele.discoveredPeripheral writeValue:midiData forCharacteristic:self.dele.discoveredWriteCharacteristic type:CBCharacteristicWriteWithoutResponse];
-                }
-                
+    switch ([dic[@"code"] intValue]) {
+        case 5:{            //发送数据
+            NSDate *current=[NSDate date];
+            double diff=current.timeIntervalSince1970-[dic[@"clickTime"] doubleValue];
+            
+            NSString *oldStr=self.msgView.text;
+            if ([oldStr isEqualToString:@""]) {
+                self.msgView.text=[NSString stringWithFormat:@"(%@,%f)",dic[@"msg"],diff];
+            }else{
+                self.msgView.text=[NSString stringWithFormat:@"%@;(%@,%f)",oldStr,dic[@"msg"],diff];
             }
-                break;
-            case 6:{            //一方退出
-                if (dic[@"clientid"]) {
-                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"ID:%@ 已退出",dic[@"clientid"]] message:@"队友都走了，你还留着干什么？" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-                    [alert show];
-                }
-                
+            
+            NSData *midiData=[[NSData alloc] initWithBase64EncodedString:dic[@"msg"] options:0];
+            
+            [self.dele.midiPlayer playMIDIData:midiData];
+            
+            if (self.dele.canWrite) {
+                [self.dele.discoveredPeripheral writeValue:midiData forCharacteristic:self.dele.discoveredWriteCharacteristic type:CBCharacteristicWriteWithoutResponse];
             }
-                break;
+            
         }
+            break;
+        case 6:{            //一方退出
+            if (dic[@"clientid"]) {
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"ID:%@ 已退出",dic[@"clientid"]] message:@"队友都走了，你还留着干什么？" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            
+        }
+            break;
     }
 }
 

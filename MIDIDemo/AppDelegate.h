@@ -28,7 +28,7 @@
 
 @required
 //从socket中读取数据
--(void)didReadData:(NSData *)data;
+-(void)didReadData:(NSData *)jsonData;
 
 @optional
 #pragma mark - ChoosePlayerController必须实现

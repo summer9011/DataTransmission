@@ -85,7 +85,7 @@
     [alert show];
 }
 
--(void)didReadData:(NSData *)data {
+-(void)didReadData:(NSData *)jsonData {
     NSLog(@"从网络过来的数据");
 }
 

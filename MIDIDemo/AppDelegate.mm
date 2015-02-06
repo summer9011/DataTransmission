@@ -11,6 +11,9 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic,strong)NSMutableData *receivedData;    //接收到的消息的二进制流
+@property (nonatomic,assign)int dataLength;                 //一条消息的长度
+
 @end
 
 @implementation AppDelegate
@@ -19,12 +22,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.recevierList=[NSMutableArray array];
     
+    self.receivedData=[NSMutableData data];
+    self.dataLength=0;
+    
     [NSURLCache setSharedURLCache:[[CustomURLCache alloc] init]];
     
     //设置应用保持常亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    midiPlayer=[[PlayMIDI alloc] initWithHTML5];
+//    midiPlayer=[[PlayMIDI alloc] initWithHTML5];
     
     return YES;
 }
@@ -41,10 +47,17 @@
 
 //心跳检测
 -(void)longConnectToSocket {
-    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}\n",2,@"",0];
-    NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}",2,@"",0];
     
-    [self.asyncSocket writeData:data withTimeout:-1 tag:2];
+    int totalLength=(int)str.length+sizeof(int);
+    NSData *lengthData=[NSData dataWithBytes:&totalLength length:4];
+    
+    NSData *strData=[str dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableData *totalData=[NSMutableData dataWithData:lengthData];
+    [totalData appendData:strData];
+    
+    [self.asyncSocket writeData:totalData withTimeout:-1 tag:2];
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -188,19 +201,57 @@
         [self.ASDelegate didConnectedAsyncSocket];
     }
     
-    [sock readDataWithTimeout:-1 tag:1];
+    [sock readDataToLength:sizeof(int) withTimeout:-1 tag:1];
     
     heartBeatTimer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(longConnectToSocket) userInfo:nil repeats:YES];
     [heartBeatTimer fire];
 }
 
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-    if ([self.ASDelegate respondsToSelector:@selector(didReadData:)]) {
-        [self.ASDelegate didReadData:data];
-    }
-    
-    [sock readDataWithTimeout:-1 tag:tag];
+-(NSRunLoop *)onSocket:(AsyncSocket *)sock wantsRunLoopForNewSocket:(AsyncSocket *)newSocket {
+    return [NSRunLoop currentRunLoop];
 }
 
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+    int receviedLength=0;
+    if (self.dataLength==0) {
+        [data getBytes:&receviedLength length:sizeof(int)];
+        self.dataLength=receviedLength-4;           //数据的长度=总长度-首部4字节
+        
+        [sock readDataToLength:self.dataLength withTimeout:-1 tag:2];
+    }else {
+        if (self.receivedData.length<self.dataLength) {
+            [self.receivedData appendData:data];
+            int leftLength=self.dataLength-(int)self.receivedData.length;
+            if (leftLength>0) {
+                [sock readDataToLength:leftLength withTimeout:-1 tag:2];
+            }else if (leftLength==0) {
+                if ([self.ASDelegate respondsToSelector:@selector(didReadData:)]) {
+                    [self.ASDelegate didReadData:self.receivedData];
+                }
+                
+                [self clearReceivedData];
+                [sock readDataToLength:sizeof(int) withTimeout:-1 tag:2];
+            }
+        }else{
+            if ([self.ASDelegate respondsToSelector:@selector(didReadData:)]) {
+                [self.ASDelegate didReadData:self.receivedData];
+            }
+            
+            [self clearReceivedData];
+            [sock readDataToLength:sizeof(int) withTimeout:-1 tag:2];
+        }
+    }
+}
+
+-(void)onSocket:(AsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag {
+    [sock readDataToLength:partialLength withTimeout:-1 tag:3];
+}
+
+-(void)clearReceivedData {
+    //清空
+    [self.receivedData resetBytesInRange:NSMakeRange(0, [self.receivedData length])];
+    [self.receivedData setLength:0];
+    self.dataLength=0;
+}
 
 @end

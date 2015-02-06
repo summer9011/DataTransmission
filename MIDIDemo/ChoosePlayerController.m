@@ -127,47 +127,37 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
     self.connectBtn.enabled=NO;
 }
 
--(void)didReadData:(NSData *)data {
-    NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *tempArr=[str componentsSeparatedByString:@"\n"];
+-(void)didReadData:(NSData *)jsonData {
+    NSError *error;
+    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"dic %@",dic);
     
-    NSMutableArray *strArr=[tempArr mutableCopy];
-    [strArr removeLastObject];
-    
-    for (NSString *str in strArr) {
-        NSLog(@"%@",str);
-        
-        NSError *error;
-        NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
-        
-        switch ([dic[@"code"] intValue]) {
-            case 1:             //获取欢迎
-                self.dele.ownerID=dic[@"currentid"];
-                
-                break;
-            case 2:{            //获取用户列表
-                dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
-                NSArray *arr=[NSJSONSerialization JSONObjectWithData:[dic[@"msg"] dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-                
-                [self.playerArr removeAllObjects];
-                [self.playerArr addObjectsFromArray:arr];
-                
-                [self.table reloadData];
-            }
-                break;
-            case 4:{            //建立聊天窗口
-                if (dic[@"from"]) {
-                    [self.dele.recevierList removeAllObjects];
-                    [self.dele.recevierList addObject:[NSString stringWithFormat:@"%@",dic[@"from"]]];
-                }
-                
-                UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                CommunicationController *communicationVC=[story instantiateViewControllerWithIdentifier:@"CommunicationVC"];
-                
-                [self.navigationController pushViewController:communicationVC animated:YES];
-            }
-                break;
+    switch ([dic[@"code"] intValue]) {
+        case 1:             //获取欢迎
+            self.dele.ownerID=[NSString stringWithFormat:@"%@",dic[@"currentid"]];
+            
+            break;
+        case 2:{            //获取用户列表
+            NSArray *arr=dic[@"msg"];
+            
+            [self.playerArr removeAllObjects];
+            [self.playerArr addObjectsFromArray:arr];
+            
+            [self.table reloadData];
         }
+            break;
+        case 4:{            //建立聊天窗口
+            if (dic[@"from"]) {
+                [self.dele.recevierList removeAllObjects];
+                [self.dele.recevierList addObject:[NSString stringWithFormat:@"%@",dic[@"from"]]];
+            }
+            
+            UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            CommunicationController *communicationVC=[story instantiateViewControllerWithIdentifier:@"CommunicationVC"];
+            
+            [self.navigationController pushViewController:communicationVC animated:YES];
+        }
+            break;
     }
     
 }
