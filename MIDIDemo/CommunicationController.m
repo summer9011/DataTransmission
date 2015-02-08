@@ -44,8 +44,8 @@
 
 //断开
 - (IBAction)doDisConnect:(id)sender {
-    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%d\",\"clientid\":%d}\n",6,0,[self.dele.recevierList[0] intValue]];
-    NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%d\",\"clientid\":%d}",6,0,[self.dele.recevierList[0] intValue]];
+    NSData *data=[NSData encodeDataForSocket:str];
     
     [self.dele.asyncSocket writeData:data withTimeout:-1 tag:6];
     
@@ -102,8 +102,8 @@
     
     NSDate *currentDate=[NSDate date];
     
-    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d,\"clickTime\":%f}\n",5,temp,[self.dele.recevierList[0] intValue],currentDate.timeIntervalSince1970];
-    NSData *strData=[str dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d,\"clickTime\":%f}",5,temp,[self.dele.recevierList[0] intValue],currentDate.timeIntervalSince1970];
+    NSData *strData=[NSData encodeDataForSocket:str];
     
     [self.dele.asyncSocket writeData:strData withTimeout:-1 tag:5];
 }

@@ -108,9 +108,8 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
         [self.dele.recevierList removeAllObjects];
         [self.dele.recevierList addObject:cell.textLabel.text];
         
-        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}\n",4,@"",[cell.textLabel.text intValue]];
-        NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
-        
+        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}",4,@"",[cell.textLabel.text intValue]];
+        NSData *data=[NSData encodeDataForSocket:str];
         [self.dele.asyncSocket writeData:data withTimeout:-1 tag:3];
     }else{
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"不能和自己发送消息" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];

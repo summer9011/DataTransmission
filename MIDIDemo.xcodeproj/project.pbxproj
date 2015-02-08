@@ -182,6 +182,8 @@
 		6ED424861A7498B400CD0C08 /* fpc_DrumAndBass_22.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246E1A7498B400CD0C08 /* fpc_DrumAndBass_22.mid */; };
 		6ED424871A7498B400CD0C08 /* fpc_DrumAndBass_23.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246F1A7498B400CD0C08 /* fpc_DrumAndBass_23.mid */; };
 		6ED424881A7498B400CD0C08 /* fpc_DrumAndBass_24.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424701A7498B400CD0C08 /* fpc_DrumAndBass_24.mid */; };
+		6EDC06E81A860BFB00F91FB4 /* NSData+SocketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDC06E71A860BFB00F91FB4 /* NSData+SocketData.m */; };
+		6EDC06EF1A864EBA00F91FB4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDC06EE1A864EBA00F91FB4 /* Message.m */; };
 		6EE06D7E1A61161C003CDF38 /* ChooseHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */; };
 		6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */; };
 		6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D831A611A36003CDF38 /* ChoosePlayerController.m */; };
@@ -391,6 +393,10 @@
 		6ED4246E1A7498B400CD0C08 /* fpc_DrumAndBass_22.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_22.mid; sourceTree = "<group>"; };
 		6ED4246F1A7498B400CD0C08 /* fpc_DrumAndBass_23.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_23.mid; sourceTree = "<group>"; };
 		6ED424701A7498B400CD0C08 /* fpc_DrumAndBass_24.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_24.mid; sourceTree = "<group>"; };
+		6EDC06E61A860BFB00F91FB4 /* NSData+SocketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SocketData.h"; sourceTree = "<group>"; };
+		6EDC06E71A860BFB00F91FB4 /* NSData+SocketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SocketData.m"; sourceTree = "<group>"; };
+		6EDC06ED1A864EBA00F91FB4 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		6EDC06EE1A864EBA00F91FB4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseHardWareController.h; sourceTree = "<group>"; };
 		6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseHardWareController.m; sourceTree = "<group>"; };
 		6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorHardWareController.h; sourceTree = "<group>"; };
@@ -482,6 +488,7 @@
 				6ECEDB191A693C630036C384 /* 第三方库 */,
 				6ED424581A73DE4600CD0C08 /* 播放MIDI库 */,
 				6ED01C491A7E494300C78BD8 /* URLCache库 */,
+				6EDC06E91A860CE400F91FB4 /* Socket数据封装 */,
 				6ECEBD361A3DD029005A9250 /* AppDelegate.h */,
 				6ECEBD371A3DD029005A9250 /* AppDelegate.mm */,
 				6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */,
@@ -901,6 +908,17 @@
 			name = "播放MIDI库";
 			sourceTree = "<group>";
 		};
+		6EDC06E91A860CE400F91FB4 /* Socket数据封装 */ = {
+			isa = PBXGroup;
+			children = (
+				6EDC06E61A860BFB00F91FB4 /* NSData+SocketData.h */,
+				6EDC06E71A860BFB00F91FB4 /* NSData+SocketData.m */,
+				6EDC06ED1A864EBA00F91FB4 /* Message.h */,
+				6EDC06EE1A864EBA00F91FB4 /* Message.m */,
+			);
+			name = "Socket数据封装";
+			sourceTree = "<group>";
+		};
 		6EE2F24A1A726FD2004E4680 /* FMOD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1244,11 +1262,13 @@
 				6ED01C4F1A7E574E00C78BD8 /* SVProgressHUD.m in Sources */,
 				6ED01C521A7E665000C78BD8 /* TestNetworkController.m in Sources */,
 				6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */,
+				6EDC06EF1A864EBA00F91FB4 /* Message.m in Sources */,
 				6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */,
 				6ECEBD351A3DD029005A9250 /* main.m in Sources */,
 				6E6F1FE11A7CC29900E93A2F /* WriteValeController.m in Sources */,
 				6EE06D841A611A36003CDF38 /* ChoosePlayerController.m in Sources */,
 				6EE472391A623AB20046287F /* AsyncSocket.m in Sources */,
+				6EDC06E81A860BFB00F91FB4 /* NSData+SocketData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

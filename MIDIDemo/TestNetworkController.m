@@ -75,8 +75,8 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
 - (IBAction)goBack:(id)sender {
     
     if (self.dele.recevierList.count>0) {
-        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%d\",\"clientid\":%d}\n",6,0,[self.dele.recevierList[0] intValue]];
-        NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%d\",\"clientid\":%d}",6,0,[self.dele.recevierList[0] intValue]];
+        NSData *data=[NSData encodeDataForSocket:str];
         [self.dele.asyncSocket writeData:data withTimeout:-1 tag:6];
     }
     
@@ -91,10 +91,16 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
     NSDate *currentDate=[NSDate date];
     
     if (self.dele.recevierList.count>0) {
-        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@发送%d\",\"clientid\":%d,\"clickTime\":%f}\n",5,self.dele.ownerID,self.countData,[self.dele.recevierList[0] intValue],currentDate.timeIntervalSince1970];
-        NSData *strData=[str dataUsingEncoding:NSUTF8StringEncoding];
+        Message *message=[[Message alloc] init];
+        message.code=5;
+        message.msg=[NSString stringWithFormat:@"%d",self.countData];
+        message.clientid=[self.dele.recevierList[0] intValue];
+        message.clicktime=currentDate.timeIntervalSince1970;
         
-        [self.dele.asyncSocket writeData:strData withTimeout:-1 tag:5];
+        NSData *data=[NSData encodeDataForSocket:message];
+        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:2];
+        
+        message=nil;
     }else{
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"选择一个接收者" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];
@@ -134,10 +140,10 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
         [self.dele.recevierList removeAllObjects];
         [self.dele.recevierList addObject:cell.textLabel.text];
         
-        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}\n",4,@"",[cell.textLabel.text intValue]];
-        NSData *data=[str dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}",4,@"",[cell.textLabel.text intValue]];
+        NSData *data=[NSData encodeDataForSocket:str];
         
-        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:3];
+        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:4];
     }else{
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"不能和自己发送消息" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];
@@ -155,8 +161,6 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-    NSLog(@"dic %@",dic);
-    
     
     switch ([dic[@"code"] intValue]) {
         case 1:             //获取欢迎
@@ -180,13 +184,24 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
         }
             break;
         case 5:{            //发送数据
+            NSLog(@"dic %@",dic);
+            
+            double arrivediff=[dic[@"arrivediff"] doubleValue];
+            
             NSDate *current=[NSDate date];
-            double diff=current.timeIntervalSince1970-[dic[@"clickTime"] doubleValue];
+            double receiveddiff=current.timeIntervalSince1970-[dic[@"arrivetime"] doubleValue];
+            
+            double totaldiff=arrivediff+receiveddiff;
+            if (totaldiff<0) {
+                totaldiff+=2.f;
+            }else if (totaldiff>2.f){
+                totaldiff-=2.f;
+            }
             
             self.dataLabel.text=[NSString stringWithFormat:@"%@",dic[@"msg"]];
-            self.startTime.text=[NSString stringWithFormat:@"%fs",[dic[@"clickTime"] doubleValue]];
+            self.startTime.text=[NSString stringWithFormat:@"%fs",[dic[@"arrivetime"] doubleValue]];
             self.endTime.text=[NSString stringWithFormat:@"%fs",current.timeIntervalSince1970];
-            self.diffTime.text=[NSString stringWithFormat:@"%fms",diff*1000];
+            self.diffTime.text=[NSString stringWithFormat:@"%fms",totaldiff*1000];
         }
             break;
         case 6:{            //一方退出

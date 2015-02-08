@@ -21,10 +21,13 @@
 
 //workerman socket
 //#define IP @"121.40.129.209"
-#define IP @"172.16.66.128"
+#define IP @"192.168.1.250"
 
 #define PORT 8480
 
 #import "SVProgressHUD.h"
+
+#import "Message.h"
+#import "NSData+SocketData.h"
 
 #endif

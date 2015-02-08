@@ -47,17 +47,18 @@
 
 //心跳检测
 -(void)longConnectToSocket {
-    NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}",2,@"",0];
+    NSDate *date=[NSDate date];
     
-    int totalLength=(int)str.length+sizeof(int);
-    NSData *lengthData=[NSData dataWithBytes:&totalLength length:4];
+    Message *message=[[Message alloc] init];
+    message.code=2;
+    message.msg=@"";
+    message.clientid=0;
+    message.clicktime=date.timeIntervalSince1970;
     
-    NSData *strData=[str dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data=[NSData encodeDataForSocket:message];
+    [self.asyncSocket writeData:data withTimeout:-1 tag:2];
     
-    NSMutableData *totalData=[NSMutableData dataWithData:lengthData];
-    [totalData appendData:strData];
-    
-    [self.asyncSocket writeData:totalData withTimeout:-1 tag:2];
+    message=nil;
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -192,6 +193,10 @@
 
 #pragma mark - AsyncSocketDelegate
 
+- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err {
+    NSLog(@"willDisconnectWithError %@",err);
+}
+
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock {
     NSLog(@"断开连接");
 }
@@ -203,12 +208,10 @@
     
     [sock readDataToLength:sizeof(int) withTimeout:-1 tag:1];
     
+    [self longConnectToSocket];
+    
     heartBeatTimer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(longConnectToSocket) userInfo:nil repeats:YES];
     [heartBeatTimer fire];
-}
-
--(NSRunLoop *)onSocket:(AsyncSocket *)sock wantsRunLoopForNewSocket:(AsyncSocket *)newSocket {
-    return [NSRunLoop currentRunLoop];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
@@ -217,20 +220,20 @@
         [data getBytes:&receviedLength length:sizeof(int)];
         self.dataLength=receviedLength-4;           //数据的长度=总长度-首部4字节
         
-        [sock readDataToLength:self.dataLength withTimeout:-1 tag:2];
+        [sock readDataToLength:self.dataLength withTimeout:-1 tag:tag];
     }else {
         if (self.receivedData.length<self.dataLength) {
             [self.receivedData appendData:data];
             int leftLength=self.dataLength-(int)self.receivedData.length;
             if (leftLength>0) {
-                [sock readDataToLength:leftLength withTimeout:-1 tag:2];
+                [sock readDataToLength:leftLength withTimeout:-1 tag:tag];
             }else if (leftLength==0) {
                 if ([self.ASDelegate respondsToSelector:@selector(didReadData:)]) {
                     [self.ASDelegate didReadData:self.receivedData];
                 }
                 
                 [self clearReceivedData];
-                [sock readDataToLength:sizeof(int) withTimeout:-1 tag:2];
+                [sock readDataToLength:sizeof(int) withTimeout:-1 tag:tag];
             }
         }else{
             if ([self.ASDelegate respondsToSelector:@selector(didReadData:)]) {
@@ -238,13 +241,13 @@
             }
             
             [self clearReceivedData];
-            [sock readDataToLength:sizeof(int) withTimeout:-1 tag:2];
+            [sock readDataToLength:sizeof(int) withTimeout:-1 tag:tag];
         }
     }
 }
 
 -(void)onSocket:(AsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag {
-    [sock readDataToLength:partialLength withTimeout:-1 tag:3];
+    [sock readDataToLength:partialLength withTimeout:-1 tag:tag];
 }
 
 -(void)clearReceivedData {
