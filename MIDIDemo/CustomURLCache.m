@@ -22,7 +22,7 @@
         NSURLResponse *response=[[NSURLResponse alloc] initWithURL:[request URL] MIMEType:MIMEType[ext] expectedContentLength:data.length textEncodingName:nil];
         
         if ([fileName isEqualToString:@"acoustic_grand_piano-mp3.js"]) {
-            [SVProgressHUD dismissWithSuccess:@"完成"];
+//            [SVProgressHUD dismissWithSuccess:@"完成"];
         }
         
         return [[NSCachedURLResponse alloc] initWithResponse:response data:data];

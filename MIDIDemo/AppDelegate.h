@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-
 #import "AsyncSocket.h"
-#import "PlayMIDI.h"
 
 @protocol CBConnectionDelegate <NSObject>
 
@@ -31,7 +29,7 @@
 -(void)didReadData:(NSData *)jsonData;
 
 @optional
-#pragma mark - ChoosePlayerController必须实现
+#pragma mark - ChooseHardWareController必须实现
 //连接到asyncSocket
 -(void)didConnectedAsyncSocket;
 
@@ -60,6 +58,8 @@
 @property (nonatomic,strong) id<ASConnectionDelegate> ASDelegate;
 
 @property (nonatomic,strong) NSString *ownerID;
+@property (nonatomic,strong) NSString *ownerName;
+
 @property (nonatomic,strong) NSMutableArray *recevierList;
 @property (nonatomic,strong) NSTimer *heartBeatTimer;
 

@@ -20,17 +20,13 @@
 @synthesize ownerID,heartBeatTimer,midiPlayer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.recevierList=[NSMutableArray array];
-    
-    self.receivedData=[NSMutableData data];
-    self.dataLength=0;
-    
-    [NSURLCache setSharedURLCache:[[CustomURLCache alloc] init]];
-    
     //设置应用保持常亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    [NSURLCache setSharedURLCache:[[CustomURLCache alloc] init]];
+    self.recevierList=[NSMutableArray array];
+    [self clearReceivedData];
     
-//    midiPlayer=[[PlayMIDI alloc] initWithHTML5];
+    self.midiPlayer=[[PlayMIDI alloc] initWithHTML5];
     
     return YES;
 }
@@ -45,20 +41,42 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {}
 
+-(void)clearReceivedData {
+    if (!self.receivedData) {
+        self.receivedData=[NSMutableData data];
+    }
+    
+    //清空
+    [self.receivedData resetBytesInRange:NSMakeRange(0, [self.receivedData length])];
+    [self.receivedData setLength:0];
+    self.dataLength=0;
+}
+
 //心跳检测
 -(void)longConnectToSocket {
     NSDate *date=[NSDate date];
+    NSDictionary *dic=@{
+                        @"type":[NSNumber numberWithInt:MessageGetUserList],
+                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
+                        @"currentUserID":self.ownerID,
+                        @"currentName":self.ownerName,
+                        @"currentUserIdentifier":@"",
+                        @"currentUserPlayStatus":[NSNumber numberWithInt:UserFree],
+                        @"currentUserMusical":[NSNumber numberWithInt:MusicalStatusUndefind],
+                        @"currentGroupID":@0,
+                        @"currentGroupName":@"",
+                        @"currentGroupUsers":[NSArray array]
+                        };
+    NSData *data=[NSData encodeDataForSocket:dic];
     
-    Message *message=[[Message alloc] init];
-    message.code=2;
-    message.msg=@"";
-    message.clientid=0;
-    message.clicktime=date.timeIntervalSince1970;
+    [self.asyncSocket writeData:data withTimeout:-1 tag:1];
+}
+
+-(void)startScanForPeripheral {
+    [SVProgressHUD showWithStatus:@"正在查找硬件.." maskType:SVProgressHUDMaskTypeClear];
     
-    NSData *data=[NSData encodeDataForSocket:message];
-    [self.asyncSocket writeData:data withTimeout:-1 tag:2];
-    
-    message=nil;
+    //搜寻所有的服务
+    [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:kServiceUUID]] options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -66,13 +84,12 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     switch (central.state) {
         case CBCentralManagerStatePoweredOn:{
-            //搜寻所有的服务
-            [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:kServiceUUID]] options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
+            [self startScanForPeripheral];
         }
             break;
             
         default:{
-            NSLog(@"打开蓝牙后重试");
+            [SVProgressHUD showErrorWithStatus:@"打开蓝牙后重试"];
         }
             break;
     }
@@ -86,10 +103,9 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    NSLog(@"成功连接到外设:%@",peripheral);
+    [SVProgressHUD showSuccessWithStatus:@"连接设备成功"];
     
     [self.discoveredPeripheral setDelegate:self];
-    
     //请求外设寻找服务
     [self.discoveredPeripheral discoverServices:@[[CBUUID UUIDWithString:kServiceUUID]]];
     
@@ -104,7 +120,7 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    NSLog(@"断开与外设:%@ 的连接 错误:%@",peripheral,error);
+    [self startScanForPeripheral];
 }
 
 #pragma mark - CBPeripheralDelegate
@@ -117,8 +133,6 @@
     
     for (CBService *service in peripheral.services) {
         if ([service.UUID isEqual:[CBUUID UUIDWithString:kServiceUUID]]) {
-            NSLog(@"serviceUUID %@",service.UUID);
-            
             self.discoveredService=service;
             [service.peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:kReadCharacteristicUUID],[CBUUID UUIDWithString:kWriteCharacteristicUUID]] forService:service];
             break;
@@ -136,7 +150,6 @@
         for (CBCharacteristic *characteristic in service.characteristics) {
             //发现读特征
             if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kReadCharacteristicUUID]]) {
-                NSLog(@"readCharacteristic %@",characteristic.UUID);
                 self.discoveredReadCharacteristic=characteristic;
                 self.canRead=YES;
                 [peripheral setNotifyValue:YES forCharacteristic:characteristic];
@@ -144,7 +157,6 @@
             
             //发现写特征
             if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kWriteCharacteristicUUID]]) {
-                NSLog(@"writeCharacteristic %@",characteristic.UUID);
                 //发现读特征
                 self.discoveredWriteCharacteristic=characteristic;
                 self.canWrite=YES;
@@ -164,15 +176,9 @@
             [self.ASDelegate didSendData:characteristic.value FromPeripheral:peripheral];
         }
     }
-    
-}
-
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    NSLog(@"didWriteValueForCharacteristic %@",characteristic.UUID);
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    NSLog(@"特征 %@ 更新了值 错误 %@",characteristic,error);
     if (error) {
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Error change notification state" message:[NSString stringWithFormat:@"%@",[error localizedDescription]] delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];
@@ -183,35 +189,26 @@
     }
     
     if (characteristic.isNotifying) {
-        NSLog(@"Notification began on %@",characteristic);
         [peripheral readValueForCharacteristic:characteristic];
     }else{
-        NSLog(@"Notification stopped on %@ disconnecting",characteristic);
         [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
     }
 }
 
 #pragma mark - AsyncSocketDelegate
 
-- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err {
-    NSLog(@"willDisconnectWithError %@",err);
-}
-
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock {
-    NSLog(@"断开连接");
+    [SVProgressHUD showErrorWithStatus:@"已断开网络连接"];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
+    [SVProgressHUD showSuccessWithStatus:@"连接到网络"];
+    
     if ([self.ASDelegate respondsToSelector:@selector(didConnectedAsyncSocket)]) {
         [self.ASDelegate didConnectedAsyncSocket];
     }
     
     [sock readDataToLength:sizeof(int) withTimeout:-1 tag:1];
-    
-    [self longConnectToSocket];
-    
-    heartBeatTimer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(longConnectToSocket) userInfo:nil repeats:YES];
-    [heartBeatTimer fire];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
@@ -248,13 +245,6 @@
 
 -(void)onSocket:(AsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag {
     [sock readDataToLength:partialLength withTimeout:-1 tag:tag];
-}
-
--(void)clearReceivedData {
-    //清空
-    [self.receivedData resetBytesInRange:NSMakeRange(0, [self.receivedData length])];
-    [self.receivedData setLength:0];
-    self.dataLength=0;
 }
 
 @end

@@ -26,8 +26,9 @@
 #define PORT 8480
 
 #import "SVProgressHUD.h"
-
-#import "Message.h"
 #import "NSData+SocketData.h"
+#import "PlayMIDI.h"
+
+#define UserNameKey @"UserName"
 
 #endif

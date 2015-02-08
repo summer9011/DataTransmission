@@ -6,13 +6,12 @@
 //  Copyright (c) 2015年 赵立波. All rights reserved.
 //
 
-#import <objc/runtime.h>
 #import "NSData+SocketData.h"
 
 @implementation NSData (SocketData)
 
-+(NSData *)encodeDataForSocket:(id)object {
-    NSString *dataString=[self encodeObjectToJsonString:object];
++(NSData *)encodeDataForSocket:(NSDictionary *)dic {
+    NSString *dataString=[self encodeObjectToJsonString:dic];
     
     int totalLength=(int)dataString.length+sizeof(int);
     NSData *lengthData=[NSData dataWithBytes:&totalLength length:4];
@@ -23,43 +22,40 @@
     return totalData;
 }
 
-+(NSString *)encodeObjectToJsonString:(id)object {
-    Class clazz = [object class];
-    u_int count;
-    objc_property_t *properties = class_copyPropertyList(clazz, &count);
-    
-    NSMutableArray *propertyArray = [NSMutableArray arrayWithCapacity:count];
-    NSMutableArray *valueArray = [NSMutableArray arrayWithCapacity:count];
-    
-    for (int i=0;i<count;i++) {
-        objc_property_t prop=properties[i];
-        const char* propertyName = property_getName(prop);
-        [propertyArray addObject:[NSString stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
-        id value =  [object valueForKey:[NSString stringWithUTF8String:propertyName]];
-        
-        if(value ==nil){
-            [valueArray addObject:@""];
-        }else{
-            [valueArray addObject:value];
-        }
-    }
-    
-    free(properties);
-    
-    NSDictionary* dtoDic = [NSDictionary dictionaryWithObjects:valueArray forKeys:propertyArray];
-    
++(NSString *)encodeObjectToJsonString:(NSDictionary *)dic {
     NSMutableString *tempJson=[NSMutableString string];
     [tempJson appendString:@"{"];
     
+    int count=(int)dic.count;
     int i=1;
-    for (NSString *key in dtoDic) {
+    for (NSString *key in dic) {
         [tempJson appendFormat:@"\"%@\":",key];
         
-        if ([dtoDic[key] isKindOfClass:[NSNumber class]]) {
-            [tempJson appendFormat:@"%@",dtoDic[key]];
+        if ([dic[key] isKindOfClass:[NSNumber class]]) {
+            [tempJson appendFormat:@"%@",dic[key]];
         }
-        if ([dtoDic[key] isKindOfClass:[NSString class]]) {
-            [tempJson appendFormat:@"\"%@\"",dtoDic[key]];
+        if ([dic[key] isKindOfClass:[NSString class]]) {
+            [tempJson appendFormat:@"\"%@\"",dic[key]];
+        }
+        
+        if ([dic[key] isKindOfClass:[NSArray class]]) {
+            [tempJson appendString:@"["];
+            
+            NSArray *tempArr=dic[key];
+            int arrCount=(int)tempArr.count;
+            int arri=0;
+            for (NSDictionary *one in tempArr) {
+                NSString *oneJson=[self encodeObjectToJsonString:one];
+                [tempJson appendString:oneJson];
+                
+                if (arri<arrCount) {
+                    [tempJson appendString:@","];
+                }
+                
+                arri++;
+            }
+            
+            [tempJson appendString:@"]"];
         }
         
         if (i<count) {
@@ -70,8 +66,6 @@
     }
     
     [tempJson appendString:@"}"];
-    
-    NSLog(@"tempJson %@",tempJson);
     
     return tempJson;
 }
