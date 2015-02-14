@@ -118,12 +118,12 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     
     if ([self.dele.ownerID intValue]!=[cell.textLabel.text intValue]) {
-        [self.dele.recevierList removeAllObjects];
-        [self.dele.recevierList addObject:cell.textLabel.text];
-        
-        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}",4,@"",[cell.textLabel.text intValue]];
-        NSData *data=[NSData encodeDataForSocket:str];
-        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:3];
+//        [self.dele.recevierList removeAllObjects];
+//        [self.dele.recevierList addObject:cell.textLabel.text];
+//        
+//        NSString *str=[NSString stringWithFormat:@"{\"code\":%d,\"msg\":\"%@\",\"clientid\":%d}",4,@"",[cell.textLabel.text intValue]];
+//        NSData *data=[NSData encodeDataForSocket:str];
+//        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:3];
     }else{
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"不能和自己发送消息" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];
@@ -150,22 +150,23 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
 #pragma mark - ASConnectionDelegate
 
 -(void)didConnectedAsyncSocket {
+    
     //获取用户是否已存在
-    NSDate *date=[NSDate date];
-    NSDictionary *dic=@{
-                        @"type":[NSNumber numberWithInt:MessageBeginConnect],
-                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
-                        @"currentUserID":@0,
-                        @"currentName":@"",
-                        @"currentUserIdentifier":[[[UIDevice currentDevice] identifierForVendor] UUIDString],
-                        @"currentUserPlayStatus":[NSNumber numberWithInt:UserFree],
-                        @"currentUserMusical":[NSNumber numberWithInt:MusicalStatusUndefind],
-                        @"currentGroupID":@0,
-                        @"currentGroupName":@"",
-                        @"currentGroupUsers":[NSArray array]
-                        };
-    NSData *data=[NSData encodeDataForSocket:dic];
-    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:1];
+//    NSDate *date=[NSDate date];
+//    NSDictionary *dic=@{
+//                        @"type":[NSNumber numberWithInt:MessageBeginConnect],
+//                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
+//                        @"currentUserID":@0,
+//                        @"currentName":@"",
+//                        @"currentUserIdentifier":[[[UIDevice currentDevice] identifierForVendor] UUIDString],
+//                        @"currentUserPlayStatus":[NSNumber numberWithInt:UserFree],
+//                        @"currentUserMusical":[NSNumber numberWithInt:MusicalStatusUndefind],
+//                        @"currentGroupID":@0,
+//                        @"currentGroupName":@"",
+//                        @"currentGroupUsers":[NSArray array]
+//                        };
+//    NSData *data=[NSData encodeDataForSocket:dic];
+//    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:2];
 }
 
 -(void)didReadData:(NSData *)jsonData {
@@ -175,7 +176,12 @@ static NSString *CellIdentifier=@"ChoosePlayerCell";
     
     switch ([dic[@"type"] intValue]) {
         case 1:             //获取欢迎
-            self.dele.ownerID=[NSString stringWithFormat:@"%@",dic[@"currentid"]];
+            if ([dic[@"currentUserID"] intValue]==0) {
+                NSLog(@"输入用户名");
+            }else{
+                self.dele.ownerID=[NSString stringWithFormat:@"%@",dic[@"currentUserID"]];
+                self.dele.ownerName=[NSString stringWithFormat:@"%@",dic[@"currentName"]];
+            }
             
             break;
         case 2:{            //获取用户列表

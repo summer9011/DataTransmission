@@ -180,6 +180,7 @@
 		6ED424861A7498B400CD0C08 /* fpc_DrumAndBass_22.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246E1A7498B400CD0C08 /* fpc_DrumAndBass_22.mid */; };
 		6ED424871A7498B400CD0C08 /* fpc_DrumAndBass_23.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED4246F1A7498B400CD0C08 /* fpc_DrumAndBass_23.mid */; };
 		6ED424881A7498B400CD0C08 /* fpc_DrumAndBass_24.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6ED424701A7498B400CD0C08 /* fpc_DrumAndBass_24.mid */; };
+		6ED693701A8F26D5001E602D /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED6936F1A8F26D5001E602D /* MainController.m */; };
 		6EDC06E81A860BFB00F91FB4 /* NSData+SocketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDC06E71A860BFB00F91FB4 /* NSData+SocketData.m */; };
 		6EE06D7E1A61161C003CDF38 /* ChooseHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */; };
 		6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */; };
@@ -385,6 +386,8 @@
 		6ED4246E1A7498B400CD0C08 /* fpc_DrumAndBass_22.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_22.mid; sourceTree = "<group>"; };
 		6ED4246F1A7498B400CD0C08 /* fpc_DrumAndBass_23.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_23.mid; sourceTree = "<group>"; };
 		6ED424701A7498B400CD0C08 /* fpc_DrumAndBass_24.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = fpc_DrumAndBass_24.mid; sourceTree = "<group>"; };
+		6ED6936E1A8F26D5001E602D /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		6ED6936F1A8F26D5001E602D /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		6EDC06E61A860BFB00F91FB4 /* NSData+SocketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SocketData.h"; sourceTree = "<group>"; };
 		6EDC06E71A860BFB00F91FB4 /* NSData+SocketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SocketData.m"; sourceTree = "<group>"; };
 		6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseHardWareController.h; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 				6EDC06E91A860CE400F91FB4 /* Socket数据封装 */,
 				6ECEBD361A3DD029005A9250 /* AppDelegate.h */,
 				6ECEBD371A3DD029005A9250 /* AppDelegate.mm */,
+				6ED6936E1A8F26D5001E602D /* MainController.h */,
+				6ED6936F1A8F26D5001E602D /* MainController.m */,
 				6EE06D7C1A61161C003CDF38 /* ChooseHardWareController.h */,
 				6EE06D7D1A61161C003CDF38 /* ChooseHardWareController.m */,
 				6EE06D851A611CA3003CDF38 /* CommunicationController.h */,
@@ -1238,6 +1243,7 @@
 				6ECEBD381A3DD029005A9250 /* AppDelegate.mm in Sources */,
 				6EE06D871A611CA3003CDF38 /* CommunicationController.m in Sources */,
 				6ED424571A73DE2C00CD0C08 /* PlayMIDI.mm in Sources */,
+				6ED693701A8F26D5001E602D /* MainController.m in Sources */,
 				6ED01A0A1A7E018700C78BD8 /* CustomURLCache.m in Sources */,
 				6ED01C4F1A7E574E00C78BD8 /* SVProgressHUD.m in Sources */,
 				6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */,

@@ -168,21 +168,18 @@ void ERRCHECK(FMOD_RESULT result) {
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"允许加载请求 %@",request.URL.absoluteString);
+    NSLog(@"请求 %@",request.URL.absoluteString);
+    
+    if ([request.URL.absoluteString hasPrefix:@"objc"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MIDIPlayerSuccess object:nil];
+        return NO;
+    }
+    
     return YES;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"开始加载");
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"完成加载");
-}
-
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"初始化MIDI播放器失败" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-    [alert show];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MIDIPlayerFailed object:nil];
 }
 
 @end

@@ -20,6 +20,9 @@
 //成功连接连接到外设
 -(void)didConnectedPeripheral;
 
+//连接外设失败
+-(void)didDisConnectedPeripheral;
+
 @end
 
 @protocol ASConnectionDelegate <NSObject>
@@ -29,11 +32,12 @@
 -(void)didReadData:(NSData *)jsonData;
 
 @optional
-#pragma mark - ChooseHardWareController必须实现
 //连接到asyncSocket
 -(void)didConnectedAsyncSocket;
 
-#pragma mark - CommunicationController必须实现
+//断开连接
+-(void)didDisConnectedAsyncSocket;
+
 //向另一方发送数据
 -(void)didSendData:(NSData *)data FromPeripheral:(CBPeripheral *)peripheral;
 

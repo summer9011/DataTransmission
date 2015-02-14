@@ -54,22 +54,22 @@
 
 //心跳检测
 -(void)longConnectToSocket {
-    NSDate *date=[NSDate date];
-    NSDictionary *dic=@{
-                        @"type":[NSNumber numberWithInt:MessageGetUserList],
-                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
-                        @"currentUserID":self.ownerID,
-                        @"currentName":self.ownerName,
-                        @"currentUserIdentifier":@"",
-                        @"currentUserPlayStatus":[NSNumber numberWithInt:UserFree],
-                        @"currentUserMusical":[NSNumber numberWithInt:MusicalStatusUndefind],
-                        @"currentGroupID":@0,
-                        @"currentGroupName":@"",
-                        @"currentGroupUsers":[NSArray array]
-                        };
-    NSData *data=[NSData encodeDataForSocket:dic];
-    
-    [self.asyncSocket writeData:data withTimeout:-1 tag:1];
+//    NSDate *date=[NSDate date];
+//    NSDictionary *dic=@{
+//                        @"type":[NSNumber numberWithInt:MessageGetUserList],
+//                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
+//                        @"currentUserID":self.ownerID,
+//                        @"currentName":self.ownerName,
+//                        @"currentUserIdentifier":@"",
+//                        @"currentUserPlayStatus":[NSNumber numberWithInt:UserFree],
+//                        @"currentUserMusical":[NSNumber numberWithInt:MusicalStatusUndefind],
+//                        @"currentGroupID":@0,
+//                        @"currentGroupName":@"",
+//                        @"currentGroupUsers":[NSArray array]
+//                        };
+//    NSData *data=[NSData encodeDataForSocket:dic];
+//    
+//    [self.asyncSocket writeData:data withTimeout:-1 tag:1];
 }
 
 -(void)startScanForPeripheral {
@@ -103,8 +103,6 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    [SVProgressHUD showSuccessWithStatus:@"连接设备成功"];
-    
     [self.discoveredPeripheral setDelegate:self];
     //请求外设寻找服务
     [self.discoveredPeripheral discoverServices:@[[CBUUID UUIDWithString:kServiceUUID]]];
@@ -121,6 +119,10 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     [self startScanForPeripheral];
+    
+    if ([self.CBDelegate respondsToSelector:@selector(didDisConnectedPeripheral)]) {
+        [self.CBDelegate didDisConnectedPeripheral];
+    }
 }
 
 #pragma mark - CBPeripheralDelegate
@@ -198,12 +200,12 @@
 #pragma mark - AsyncSocketDelegate
 
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock {
-    [SVProgressHUD showErrorWithStatus:@"已断开网络连接"];
+    if ([self.ASDelegate respondsToSelector:@selector(didDisConnectedAsyncSocket)]) {
+        [self.ASDelegate didDisConnectedAsyncSocket];
+    }
 }
 
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
-    [SVProgressHUD showSuccessWithStatus:@"连接到网络"];
-    
     if ([self.ASDelegate respondsToSelector:@selector(didConnectedAsyncSocket)]) {
         [self.ASDelegate didConnectedAsyncSocket];
     }
@@ -212,6 +214,8 @@
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+    NSLog(@"didReadData %@",data);
+    
     int receviedLength=0;
     if (self.dataLength==0) {
         [data getBytes:&receviedLength length:sizeof(int)];
