@@ -185,6 +185,8 @@
 		6ED6937A1A9032D3001E602D /* GroupListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED693791A9032D3001E602D /* GroupListController.m */; };
 		6ED6937D1A904134001E602D /* DZQGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED6937C1A904134001E602D /* DZQGroup.m */; };
 		6ED693801A905337001E602D /* GroupInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED6937F1A905337001E602D /* GroupInController.m */; };
+		6ED693841A9071EF001E602D /* GroupInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED693831A9071EF001E602D /* GroupInCell.m */; };
+		6ED693871A908DAD001E602D /* GamingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED693861A908DAD001E602D /* GamingController.m */; };
 		6EDC06E81A860BFB00F91FB4 /* NSData+SocketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDC06E71A860BFB00F91FB4 /* NSData+SocketData.m */; };
 		6EE06D811A6116CD003CDF38 /* SimulatorHardWareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE06D801A6116CD003CDF38 /* SimulatorHardWareController.m */; };
 		6EE2F3211A7275EC004E4680 /* libfmod_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE2F2BC1A7275EC004E4680 /* libfmod_iphoneos.a */; };
@@ -398,6 +400,10 @@
 		6ED6937C1A904134001E602D /* DZQGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZQGroup.m; sourceTree = "<group>"; };
 		6ED6937E1A905337001E602D /* GroupInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInController.h; sourceTree = "<group>"; };
 		6ED6937F1A905337001E602D /* GroupInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupInController.m; sourceTree = "<group>"; };
+		6ED693821A9071EF001E602D /* GroupInCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInCell.h; sourceTree = "<group>"; };
+		6ED693831A9071EF001E602D /* GroupInCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupInCell.m; sourceTree = "<group>"; };
+		6ED693851A908DAC001E602D /* GamingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamingController.h; sourceTree = "<group>"; };
+		6ED693861A908DAD001E602D /* GamingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamingController.m; sourceTree = "<group>"; };
 		6EDC06E61A860BFB00F91FB4 /* NSData+SocketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SocketData.h"; sourceTree = "<group>"; };
 		6EDC06E71A860BFB00F91FB4 /* NSData+SocketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SocketData.m"; sourceTree = "<group>"; };
 		6EE06D7F1A6116CD003CDF38 /* SimulatorHardWareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorHardWareController.h; sourceTree = "<group>"; };
@@ -490,6 +496,10 @@
 				6ED693791A9032D3001E602D /* GroupListController.m */,
 				6ED6937E1A905337001E602D /* GroupInController.h */,
 				6ED6937F1A905337001E602D /* GroupInController.m */,
+				6ED693821A9071EF001E602D /* GroupInCell.h */,
+				6ED693831A9071EF001E602D /* GroupInCell.m */,
+				6ED693851A908DAC001E602D /* GamingController.h */,
+				6ED693861A908DAD001E602D /* GamingController.m */,
 				6ED693811A906FAF001E602D /* 模型 */,
 				6E6F1FE21A7D0E0300E93A2F /* 模拟与测试 */,
 				6ECEBD3C1A3DD029005A9250 /* Main.storyboard */,
@@ -1261,9 +1271,11 @@
 				6ED6937D1A904134001E602D /* DZQGroup.m in Sources */,
 				6ED693771A9024F2001E602D /* DZQUser.m in Sources */,
 				6ED424571A73DE2C00CD0C08 /* PlayMIDI.mm in Sources */,
+				6ED693871A908DAD001E602D /* GamingController.m in Sources */,
 				6ED693801A905337001E602D /* GroupInController.m in Sources */,
 				6ED6937A1A9032D3001E602D /* GroupListController.m in Sources */,
 				6ED693701A8F26D5001E602D /* MainController.m in Sources */,
+				6ED693841A9071EF001E602D /* GroupInCell.m in Sources */,
 				6ED01A0A1A7E018700C78BD8 /* CustomURLCache.m in Sources */,
 				6ED01C4F1A7E574E00C78BD8 /* SVProgressHUD.m in Sources */,
 				6EE4723A1A623AB20046287F /* AsyncUdpSocket.m in Sources */,

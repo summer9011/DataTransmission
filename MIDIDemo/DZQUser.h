@@ -15,4 +15,6 @@
 @property (nonatomic,strong) NSString *userUUID;
 @property (nonatomic,strong) NSString *userName;
 
+@property (nonatomic,assign) BOOL isHost;
+
 @end

@@ -15,4 +15,6 @@
 @synthesize userUUID;
 @synthesize userName;
 
+@synthesize isHost;
+
 @end

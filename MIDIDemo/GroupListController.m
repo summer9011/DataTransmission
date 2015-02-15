@@ -77,7 +77,7 @@ static NSString *CellIdentifier=@"GroupCell";
                         @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970]
                         };
     NSData *data=[NSData encodeDataForSocket:dic];
-    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:3];
+    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageGetGameGroup];
 }
 
 - (IBAction)createGroup:(id)sender {
@@ -101,7 +101,7 @@ static NSString *CellIdentifier=@"GroupCell";
                             @"userName":self.dele.user.userName
                             };
         NSData *data=[NSData encodeDataForSocket:dic];
-        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:4];
+        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageCreateGroup];
     }else{
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"请输入游戏组名" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];
@@ -155,7 +155,6 @@ static NSString *CellIdentifier=@"GroupCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *group=self.groupArr[indexPath.row];
-    NSLog(@"group %@",group);
     
     self.dele.group.groupID=[group[@"group_id"] intValue];
     self.dele.group.groupName=[NSString stringWithFormat:@"%@",group[@"group_name"]];
@@ -172,7 +171,7 @@ static NSString *CellIdentifier=@"GroupCell";
                         @"userName":self.dele.user.userName
                         };
     NSData *data=[NSData encodeDataForSocket:dic];
-    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:6];
+    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageJoinInGroup];
     
 }
 
@@ -181,8 +180,6 @@ static NSString *CellIdentifier=@"GroupCell";
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-    NSLog(@"result %@",dic);
-    
     switch ([dic[@"type"] intValue]) {
         case MessageGetGameGroup:
             if (![dic[@"error"] boolValue]) {
@@ -202,6 +199,8 @@ static NSString *CellIdentifier=@"GroupCell";
                     self.dele.group.groupStatus=GroupStatusReady;
                     self.dele.group.groupType=GroupTypeNormal;
                     
+                    self.dele.user.isHost=YES;
+                    
                     self.createGroupView.hidden=YES;
                     
                     [self goGroupIn];
@@ -217,6 +216,8 @@ static NSString *CellIdentifier=@"GroupCell";
         case MessageJoinInGroup:
             if (![dic[@"error"] boolValue]) {
                 if ([dic[@"result"] intValue]>0) {
+                    self.dele.user.isHost=NO;
+                    
                     [self goGroupIn];
                     
                     [self.timer invalidate];

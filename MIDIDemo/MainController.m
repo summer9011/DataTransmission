@@ -115,7 +115,7 @@
                         @"userUUID":self.dele.user.userUUID
                         };
     NSData *data=[NSData encodeDataForSocket:dic];
-    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:1];
+    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageUserLogin];
 }
 
 - (IBAction)clickRegisterBack:(id)sender {
@@ -137,7 +137,7 @@
                             @"userName":self.dele.user.userName
                             };
         NSData *data=[NSData encodeDataForSocket:dic];
-        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:2];
+        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageUserRegister];
     }else{
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"请输入用户名" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];
