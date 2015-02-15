@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 #import "SimulatorHardWareController.h"
+#import "GroupListController.h"
 
 @interface MainController () <CBConnectionDelegate,ASConnectionDelegate>
 
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *goGroupBtn;
 
 //Register
+@property (weak, nonatomic) IBOutlet UIView *registerView;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 
@@ -40,6 +42,8 @@
     self.isMusicalReady=NO;
     self.isNetworkReady=NO;
     self.isMIDIPlayerReady=NO;
+    
+    self.registerView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.3];
     
     self.dele=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -108,12 +112,44 @@
     NSDictionary *dic=@{
                         @"type":[NSNumber numberWithInt:MessageUserLogin],
                         @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
-                        @"userIdentifier":[[[UIDevice currentDevice] identifierForVendor] UUIDString]
+                        @"userUUID":self.dele.user.userUUID
                         };
     NSData *data=[NSData encodeDataForSocket:dic];
     [self.dele.asyncSocket writeData:data withTimeout:-1 tag:1];
 }
 
+- (IBAction)clickRegisterBack:(id)sender {
+    [self.nameText resignFirstResponder];
+}
+
+//注册到服务器
+- (IBAction)clickToRegister:(id)sender {
+    [self.nameText resignFirstResponder];
+    
+    if (![self.nameText.text isEqualToString:@""]) {
+        self.dele.user.userName=self.nameText.text;
+        
+        NSDate *date=[NSDate date];
+        NSDictionary *dic=@{
+                            @"type":[NSNumber numberWithInt:MessageUserRegister],
+                            @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
+                            @"userUUID":self.dele.user.userUUID,
+                            @"userName":self.dele.user.userName
+                            };
+        NSData *data=[NSData encodeDataForSocket:dic];
+        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:2];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"请输入用户名" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+-(void)goGroupList {
+    UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    GroupListController *groupListVC=[story instantiateViewControllerWithIdentifier:@"GroupListVC"];
+    
+    [self.navigationController pushViewController:groupListVC animated:YES];
+}
 
 #pragma mark - CBConnectionDelegate
 
@@ -158,11 +194,36 @@
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"result %@",dic);
     
     switch ([dic[@"type"] intValue]) {
         case MessageUserLogin:
             if (![dic[@"error"] boolValue]) {
-                NSLog(@"%@",dic[@"result"]);
+                if ([dic[@"result"] isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *result=dic[@"result"];
+                    
+                    self.dele.user.userID=[result[@"user_id"] intValue];
+                    self.dele.user.userName=[NSString stringWithFormat:@"%@",result[@"user_name"]];
+                    
+                    [self goGroupList];
+                }else{
+                    self.registerView.hidden=NO;
+                }
+            }else{
+                NSLog(@"error %@",dic[@"result"]);
+            }
+            break;
+        case MessageUserRegister:
+            if (![dic[@"error"] boolValue]) {
+                if ([dic[@"result"] intValue]>0) {
+                    self.dele.user.userID=[dic[@"result"] intValue];
+                    
+                    self.registerView.hidden=YES;
+                    
+                    [self goGroupList];
+                }else{
+                    NSLog(@"insert username into mysql error");
+                }
             }else{
                 NSLog(@"error %@",dic[@"result"]);
             }

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "AsyncSocket.h"
+#import "DZQUser.h"
+#import "DZQGroup.h"
 
 @protocol CBConnectionDelegate <NSObject>
 
@@ -61,15 +63,15 @@
 @property (nonatomic,strong) AsyncSocket *asyncSocket;
 @property (nonatomic,strong) id<ASConnectionDelegate> ASDelegate;
 
-@property (nonatomic,strong) NSString *ownerID;
-@property (nonatomic,strong) NSString *ownerName;
-
 @property (nonatomic,strong) NSMutableArray *recevierList;
 @property (nonatomic,strong) NSTimer *heartBeatTimer;
 
 @property (nonatomic,strong) PlayMIDI *midiPlayer;
 
 @property (nonatomic,strong) NSString *cachePath;
+
+@property (nonatomic,strong) DZQUser *user;
+@property (nonatomic,strong) DZQGroup *group;
 
 @end
 

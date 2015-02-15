@@ -17,7 +17,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize ownerID,heartBeatTimer,midiPlayer;
+@synthesize heartBeatTimer,midiPlayer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置应用保持常亮
@@ -25,6 +25,11 @@
     [NSURLCache setSharedURLCache:[[CustomURLCache alloc] init]];
     self.recevierList=[NSMutableArray array];
     [self clearReceivedData];
+    
+    self.user=[[DZQUser alloc] init];
+    self.user.userUUID=[[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    
+    self.group=[[DZQGroup alloc] init];
     
     self.midiPlayer=[[PlayMIDI alloc] initWithHTML5];
     
@@ -50,26 +55,6 @@
     [self.receivedData resetBytesInRange:NSMakeRange(0, [self.receivedData length])];
     [self.receivedData setLength:0];
     self.dataLength=0;
-}
-
-//心跳检测
--(void)longConnectToSocket {
-//    NSDate *date=[NSDate date];
-//    NSDictionary *dic=@{
-//                        @"type":[NSNumber numberWithInt:MessageGetUserList],
-//                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
-//                        @"currentUserID":self.ownerID,
-//                        @"currentName":self.ownerName,
-//                        @"currentUserIdentifier":@"",
-//                        @"currentUserPlayStatus":[NSNumber numberWithInt:UserFree],
-//                        @"currentUserMusical":[NSNumber numberWithInt:MusicalStatusUndefind],
-//                        @"currentGroupID":@0,
-//                        @"currentGroupName":@"",
-//                        @"currentGroupUsers":[NSArray array]
-//                        };
-//    NSData *data=[NSData encodeDataForSocket:dic];
-//    
-//    [self.asyncSocket writeData:data withTimeout:-1 tag:1];
 }
 
 -(void)startScanForPeripheral {
@@ -214,8 +199,6 @@
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-    NSLog(@"didReadData %@",data);
-    
     int receviedLength=0;
     if (self.dataLength==0) {
         [data getBytes:&receviedLength length:sizeof(int)];

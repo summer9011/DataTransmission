@@ -48,4 +48,37 @@ typedef NS_ENUM(int, MessageType){
     MessageQuitApp,                                 //13.退出App
 };
 
+typedef NS_ENUM (int, UserStatus){
+    UserStatusConnect,                              //0.用户已连接
+    UserStatusDisConnect,                           //1.用户断开连接
+};
+
+typedef NS_ENUM (int, GroupStatus){
+    GroupStatusCancel,                              //0.取消游戏组
+    GroupStatusReady,                               //1.游戏组ready，允许用户进入
+    GroupStatusStart,                               //2.游戏组开始，不允许用户进入
+    GroupStatusEnd,                                 //3.游戏组结束
+};
+
+typedef NS_ENUM (int, GroupType){
+    GroupTypeNormal,                                //0.普通游戏组
+};
+
+typedef NS_ENUM (int, MusicalType){
+    MusicalTypePiano,                               //0.钢琴
+};
+
+typedef NS_ENUM (int, MusicalStatus){
+    MusicalStatusConnect,                           //0.设备已连接
+    MusicalStatusDisConnect,                        //1.设备断开连接
+};
+
+typedef NS_ENUM (int, UserPlayStatus){
+    UserPlayStatusNotReady,                         //0.用户未准备
+    UserPlayStatusReady,                            //1.用户已准备
+    UserPlayStatusStart,                            //2.用户游戏中
+    UserPlayStatusEnd,                              //3.用户游戏结束
+    UserPlayStatusChangingMusical,                  //4.用户更改设备
+};
+
 #endif
