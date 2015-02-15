@@ -43,7 +43,7 @@ static NSString *CellIdentifier=@"GroupCell";
     [self.groupTable registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.groupTable.tableFooterView=[[UIView alloc] init];
     
-    self.timer=[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refreshGroupTable) userInfo:nil repeats:YES];
+    self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshGroupTable) userInfo:nil repeats:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -156,22 +156,27 @@ static NSString *CellIdentifier=@"GroupCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *group=self.groupArr[indexPath.row];
     
-    self.dele.group.groupID=[group[@"group_id"] intValue];
-    self.dele.group.groupName=[NSString stringWithFormat:@"%@",group[@"group_name"]];
-    self.dele.group.groupStatus=[group[@"group_status"] intValue];
-    self.dele.group.groupType=[group[@"group_type"] intValue];
-    
-    NSDate *date=[NSDate date];
-    NSDictionary *dic=@{
-                        @"type":[NSNumber numberWithInt:MessageJoinInGroup],
-                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
-                        @"groupID":[NSNumber numberWithInt:self.dele.group.groupID],
-                        @"groupName":self.dele.group.groupName,
-                        @"userID":[NSNumber numberWithInt:self.dele.user.userID],
-                        @"userName":self.dele.user.userName
-                        };
-    NSData *data=[NSData encodeDataForSocket:dic];
-    [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageJoinInGroup];
+    if ([group[@"group_status"] intValue]==GroupStatusReady) {
+        self.dele.group.groupID=[group[@"group_id"] intValue];
+        self.dele.group.groupName=[NSString stringWithFormat:@"%@",group[@"group_name"]];
+        self.dele.group.groupStatus=[group[@"group_status"] intValue];
+        self.dele.group.groupType=[group[@"group_type"] intValue];
+        
+        NSDate *date=[NSDate date];
+        NSDictionary *dic=@{
+                            @"type":[NSNumber numberWithInt:MessageJoinInGroup],
+                            @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
+                            @"groupID":[NSNumber numberWithInt:self.dele.group.groupID],
+                            @"groupName":self.dele.group.groupName,
+                            @"userID":[NSNumber numberWithInt:self.dele.user.userID],
+                            @"userName":self.dele.user.userName
+                            };
+        NSData *data=[NSData encodeDataForSocket:dic];
+        [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageJoinInGroup];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"只允许加入已准备" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
 }
 
@@ -180,6 +185,8 @@ static NSString *CellIdentifier=@"GroupCell";
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"GroupListController %@",dic);
+    
     switch ([dic[@"type"] intValue]) {
         case MessageGetGameGroup:
             if (![dic[@"error"] boolValue]) {
@@ -202,6 +209,7 @@ static NSString *CellIdentifier=@"GroupCell";
                     self.dele.user.isHost=YES;
                     
                     self.createGroupView.hidden=YES;
+                    [self.createGroupName resignFirstResponder];
                     
                     [self goGroupIn];
                     

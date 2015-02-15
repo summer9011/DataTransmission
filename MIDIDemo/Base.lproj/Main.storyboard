@@ -399,8 +399,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="房主" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qef-8c-glB">
-                                                    <rect key="frame" x="463" y="32" width="34" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房主" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qef-8c-glB">
+                                                    <rect key="frame" x="466" y="32" width="34" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -411,6 +411,8 @@
                                                 <constraint firstItem="4i8-zJ-xab" firstAttribute="top" secondItem="0qd-JX-2kD" secondAttribute="bottom" constant="-19" id="ECK-yh-WLV"/>
                                                 <constraint firstItem="4i8-zJ-xab" firstAttribute="leading" secondItem="d7r-EJ-cqa" secondAttribute="leadingMargin" constant="74" id="G8c-ws-urg"/>
                                                 <constraint firstItem="9X2-Ur-1Hl" firstAttribute="leading" secondItem="d7r-EJ-cqa" secondAttribute="leadingMargin" constant="8" id="IwL-MF-Hyn"/>
+                                                <constraint firstItem="KhO-8i-L1j" firstAttribute="centerY" secondItem="Qef-8c-glB" secondAttribute="centerY" id="bIs-rm-sQn"/>
+                                                <constraint firstItem="KhO-8i-L1j" firstAttribute="leading" secondItem="Qef-8c-glB" secondAttribute="trailing" constant="30" id="bht-X0-95P"/>
                                                 <constraint firstItem="9X2-Ur-1Hl" firstAttribute="top" secondItem="0qd-JX-2kD" secondAttribute="bottom" constant="8" id="eJD-5b-9Qi"/>
                                                 <constraint firstItem="bhg-qg-mXN" firstAttribute="top" secondItem="4i8-zJ-xab" secondAttribute="bottom" constant="9" id="eJZ-Rv-Jtc"/>
                                                 <constraint firstItem="0qd-JX-2kD" firstAttribute="top" secondItem="d7r-EJ-cqa" secondAttribute="topMargin" constant="8" id="kTR-JR-6GA"/>
@@ -477,8 +479,53 @@
                     <view key="view" contentMode="scaleToFill" id="CX8-Kb-WCh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数据发送页面" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgs-0a-Ad2">
+                                <rect key="frame" x="249" y="28" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgf-Q9-9FK">
+                                <rect key="frame" x="16" y="57" width="568" height="483"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9M0-vg-moG">
+                                <rect key="frame" x="270" y="550" width="60" height="30"/>
+                                <state key="normal" title="退出游戏">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="quitGame:" destination="XVB-Nl-PZ5" eventType="touchUpInside" id="W5P-CN-fvb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-c2-iwY">
+                                <rect key="frame" x="16" y="550" width="90" height="30"/>
+                                <state key="normal" title="模拟数据发送">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="similarSendData:" destination="XVB-Nl-PZ5" eventType="touchUpInside" id="ixG-tq-tn0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="hgs-0a-Ad2" secondAttribute="centerX" id="52u-uf-6go"/>
+                            <constraint firstItem="QCg-Hm-ryJ" firstAttribute="top" secondItem="9M0-vg-moG" secondAttribute="bottom" constant="20" id="MZb-Ie-E3K"/>
+                            <constraint firstAttribute="centerX" secondItem="9M0-vg-moG" secondAttribute="centerX" id="QQ4-IS-6TR"/>
+                            <constraint firstItem="hgs-0a-Ad2" firstAttribute="top" secondItem="jVA-gX-Nax" secondAttribute="bottom" constant="8" id="WpL-Zl-fbn"/>
+                            <constraint firstItem="vgf-Q9-9FK" firstAttribute="leading" secondItem="CX8-Kb-WCh" secondAttribute="leadingMargin" id="eHc-sb-HkT"/>
+                            <constraint firstItem="vgf-Q9-9FK" firstAttribute="top" secondItem="hgs-0a-Ad2" secondAttribute="bottom" constant="8" id="fVw-Af-Snp"/>
+                            <constraint firstItem="cEL-c2-iwY" firstAttribute="leading" secondItem="CX8-Kb-WCh" secondAttribute="leadingMargin" id="lMg-5e-0vl"/>
+                            <constraint firstItem="QCg-Hm-ryJ" firstAttribute="top" secondItem="vgf-Q9-9FK" secondAttribute="bottom" constant="60" id="pXo-zk-xi2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vgf-Q9-9FK" secondAttribute="trailing" id="pb3-yM-rlj"/>
+                            <constraint firstItem="cEL-c2-iwY" firstAttribute="top" secondItem="vgf-Q9-9FK" secondAttribute="bottom" constant="10" id="ygO-1s-Xbm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="showView" destination="vgf-Q9-9FK" id="gfp-pp-v7f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPo-Fq-iow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

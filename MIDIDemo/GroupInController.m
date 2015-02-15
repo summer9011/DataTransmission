@@ -86,6 +86,7 @@ static NSString *CellIdentifier=@"GroupInCell";
                         @"type":[NSNumber numberWithInt:MessageQuitGroup],
                         @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
                         @"userID":[NSNumber numberWithInt:self.dele.user.userID],
+                        @"userName":self.dele.user.userName,
                         @"groupID":[NSNumber numberWithInt:self.dele.group.groupID],
                         @"userIsHost":[NSNumber numberWithBool:self.dele.user.isHost]
                         };
@@ -209,6 +210,8 @@ static NSString *CellIdentifier=@"GroupInCell";
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"GroupInController %@",dic);
+    
     switch ([dic[@"type"] intValue]) {
         case MessageGetGroupInUser:
             if (![dic[@"error"] boolValue]) {
@@ -223,8 +226,15 @@ static NSString *CellIdentifier=@"GroupInCell";
             break;
         case MessageQuitGroup:
             if (![dic[@"error"] boolValue]) {
-                [self.timer invalidate];
-                [self.navigationController popViewControllerAnimated:YES];
+                NSDictionary *result=dic[@"result"];
+                if ([result[@"userID"] intValue]==self.dele.user.userID) {
+                    [self.timer invalidate];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }else{
+                    NSString *msg=[NSString stringWithFormat:@"%@退出游戏组",result[@"userName"]];
+                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"通知" message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
             }else{
                 NSLog(@"error %@",dic[@"result"]);
             }

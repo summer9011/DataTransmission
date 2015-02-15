@@ -58,7 +58,7 @@
     //测试
     [self didConnectedPeripheral];
     
-    self.timer=[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(checkAllStatus) userInfo:nil repeats:YES];
+    self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkAllStatus) userInfo:nil repeats:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMIDIPlayerSuccess) name:MIDIPlayerSuccess object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMIDIPlayerFailed) name:MIDIPlayerFailed object:nil];
@@ -194,12 +194,13 @@
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-    NSLog(@"result %@",dic);
+    NSLog(@"MainController %@",dic);
     
     switch ([dic[@"type"] intValue]) {
         case MessageUserLogin:
             if (![dic[@"error"] boolValue]) {
-                if ([dic[@"result"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *result=dic[@"result"];
+                if (result[@"user_id"]) {
                     NSDictionary *result=dic[@"result"];
                     
                     self.dele.user.userID=[result[@"user_id"] intValue];
@@ -209,6 +210,8 @@
                 }else{
                     self.registerView.hidden=NO;
                 }
+                
+                self.dele.user.userSessionID=[result[@"user_sessionid"] intValue];
             }else{
                 NSLog(@"error %@",dic[@"result"]);
             }
@@ -219,6 +222,7 @@
                     self.dele.user.userID=[dic[@"result"] intValue];
                     
                     self.registerView.hidden=YES;
+                    [self.nameText resignFirstResponder];
                     
                     [self goGroupList];
                 }else{

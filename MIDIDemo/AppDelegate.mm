@@ -38,7 +38,18 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {}
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {}
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    NSLog(@"applicationDidEnterBackground");
+    
+    NSDate *date=[NSDate date];
+    NSDictionary *dic=@{
+                        @"type":[NSNumber numberWithInt:MessageQuitApp],
+                        @"triggerTime":[NSNumber numberWithDouble:date.timeIntervalSince1970],
+                        @"userID":[NSNumber numberWithInt:self.user.userID]
+                        };
+    NSData *sendData=[NSData encodeDataForSocket:dic];
+    [self.asyncSocket writeData:sendData withTimeout:-1 tag:MessageQuitApp];
+}
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {}
 
