@@ -22,6 +22,7 @@
 @property (nonatomic,strong) NSTimer *timer;
 
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 @end
 
@@ -64,7 +65,8 @@ static NSString *CellIdentifier=@"GroupInCell";
             readyCount++;
         }
     }
-    if (readyCount!=0&&readyCount==self.groupInArr.count) {
+    
+    if (readyCount!=0&&readyCount==self.groupInArr.count&&self.dele.user.isHost) {
         self.startBtn.enabled=YES;
     }else{
         self.startBtn.enabled=NO;
@@ -110,6 +112,7 @@ static NSString *CellIdentifier=@"GroupInCell";
     
     if ([readyBtn.titleLabel.text isEqualToString:@"准备"]) {
         [readyBtn setTitle:@"取消" forState:UIControlStateNormal];
+        self.backBtn.enabled=NO;
         
         NSDate *date=[NSDate date];
         NSDictionary *dic=@{
@@ -123,6 +126,7 @@ static NSString *CellIdentifier=@"GroupInCell";
         [self.dele.asyncSocket writeData:data withTimeout:-1 tag:MessageUserGameReady];
     }else{
         [readyBtn setTitle:@"准备" forState:UIControlStateNormal];
+        self.backBtn.enabled=YES;
         
         NSDate *date=[NSDate date];
         NSDictionary *dic=@{
@@ -153,9 +157,20 @@ static NSString *CellIdentifier=@"GroupInCell";
     if ([groupInUser[@"groupin_user_id"] intValue]==self.dele.user.userID) {
         cell.groupInReadyBtn.hidden=NO;
         cell.groupInUserName.textColor=[UIColor redColor];
+        if ([groupInUser[@"groupin_user_ishost"] boolValue]) {
+            self.dele.user.isHost=YES;
+        }else{
+            self.dele.user.isHost=NO;
+        }
     }else{
         cell.groupInReadyBtn.hidden=YES;
         cell.groupInUserName.textColor=[UIColor blackColor];
+    }
+    
+    if ([groupInUser[@"groupin_user_ishost"] boolValue]) {
+        cell.groupInUserHost.hidden=NO;
+    }else{
+        cell.groupInUserHost.hidden=YES;
     }
     
     switch ([groupInUser[@"groupin_user_status"] intValue]) {
@@ -194,14 +209,6 @@ static NSString *CellIdentifier=@"GroupInCell";
             break;
     }
     
-    if ([groupInUser[@"groupin_user_ishost"] boolValue]) {
-        cell.groupInUserHost.hidden=NO;
-        self.dele.user.isHost=YES;
-    }else{
-        cell.groupInUserHost.hidden=YES;
-        self.dele.user.isHost=NO;
-    }
-    
     return cell;
 }
 
@@ -210,7 +217,7 @@ static NSString *CellIdentifier=@"GroupInCell";
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-    NSLog(@"GroupInController %@",dic);
+//    NSLog(@"GroupInController %@",dic);
     
     switch ([dic[@"type"] intValue]) {
         case MessageGetGroupInUser:
@@ -227,8 +234,11 @@ static NSString *CellIdentifier=@"GroupInCell";
         case MessageQuitGroup:
             if (![dic[@"error"] boolValue]) {
                 NSDictionary *result=dic[@"result"];
+                NSLog(@"result %@",result[@"userID"]);
+                NSLog(@"userID %d",self.dele.user.userID);
+                
                 if ([result[@"userID"] intValue]==self.dele.user.userID) {
-                    [self.timer invalidate];
+                    [self.timer setFireDate:[NSDate distantFuture]];
                     [self.navigationController popViewControllerAnimated:YES];
                 }else{
                     NSString *msg=[NSString stringWithFormat:@"%@退出游戏组",result[@"userName"]];
@@ -247,7 +257,7 @@ static NSString *CellIdentifier=@"GroupInCell";
             NSLog(@"MessageGameStart %@",dic);
             
             if (![dic[@"error"] boolValue]) {
-                [self.timer invalidate];
+                [self.timer setFireDate:[NSDate distantFuture]];
                 
                 UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 GamingController *gamingVC=[story instantiateViewControllerWithIdentifier:@"GameingVC"];

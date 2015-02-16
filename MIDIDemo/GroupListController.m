@@ -54,7 +54,7 @@ static NSString *CellIdentifier=@"GroupCell";
     }
     
     if (self.timer) {
-        [self.timer fire];
+        [self.timer setFireDate:[NSDate distantPast]];
     }
 }
 
@@ -66,7 +66,7 @@ static NSString *CellIdentifier=@"GroupCell";
     }
     
     if (self.timer) {
-        [self.timer invalidate];
+        [self.timer setFireDate:[NSDate distantFuture]];
     }
 }
 
@@ -185,7 +185,7 @@ static NSString *CellIdentifier=@"GroupCell";
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-    NSLog(@"GroupListController %@",dic);
+//    NSLog(@"GroupListController %@",dic);
     
     switch ([dic[@"type"] intValue]) {
         case MessageGetGameGroup:
@@ -213,7 +213,7 @@ static NSString *CellIdentifier=@"GroupCell";
                     
                     [self goGroupIn];
                     
-                    [self.timer invalidate];
+                    [self.timer setFireDate:[NSDate distantFuture]];
                 }else{
                     NSLog(@"insert groupname into mysql error");
                 }
@@ -228,7 +228,7 @@ static NSString *CellIdentifier=@"GroupCell";
                     
                     [self goGroupIn];
                     
-                    [self.timer invalidate];
+                    [self.timer setFireDate:[NSDate distantFuture]];
                 }else{
                     NSLog(@"insert groupin into mysql error");
                 }

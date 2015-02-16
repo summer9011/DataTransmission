@@ -72,7 +72,7 @@
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-    NSLog(@"GamingController %@",dic);
+//    NSLog(@"GamingController %@",dic);
     
     switch ([dic[@"type"] intValue]) {
         case MessageSendData:

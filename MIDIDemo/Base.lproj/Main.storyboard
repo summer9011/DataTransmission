@@ -459,6 +459,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="6bX-3g-gSB" id="hxu-pk-pPA"/>
                         <outlet property="groupInTable" destination="HgJ-jZ-crd" id="tto-oW-V9c"/>
                         <outlet property="groupNameLabel" destination="ZqF-0f-aJP" id="hFs-HI-DL0"/>
                         <outlet property="startBtn" destination="fOm-Jk-1rr" id="HQY-GO-pyD"/>
@@ -487,8 +488,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgf-Q9-9FK">
-                                <rect key="frame" x="16" y="57" width="568" height="483"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="57" width="600" height="483"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9M0-vg-moG">
                                 <rect key="frame" x="270" y="550" width="60" height="30"/>
@@ -511,15 +512,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vgf-Q9-9FK" firstAttribute="leading" secondItem="CX8-Kb-WCh" secondAttribute="leading" id="2BD-oq-88B"/>
                             <constraint firstAttribute="centerX" secondItem="hgs-0a-Ad2" secondAttribute="centerX" id="52u-uf-6go"/>
+                            <constraint firstAttribute="trailing" secondItem="vgf-Q9-9FK" secondAttribute="trailing" id="IBi-gS-cIo"/>
                             <constraint firstItem="QCg-Hm-ryJ" firstAttribute="top" secondItem="9M0-vg-moG" secondAttribute="bottom" constant="20" id="MZb-Ie-E3K"/>
                             <constraint firstAttribute="centerX" secondItem="9M0-vg-moG" secondAttribute="centerX" id="QQ4-IS-6TR"/>
                             <constraint firstItem="hgs-0a-Ad2" firstAttribute="top" secondItem="jVA-gX-Nax" secondAttribute="bottom" constant="8" id="WpL-Zl-fbn"/>
-                            <constraint firstItem="vgf-Q9-9FK" firstAttribute="leading" secondItem="CX8-Kb-WCh" secondAttribute="leadingMargin" id="eHc-sb-HkT"/>
                             <constraint firstItem="vgf-Q9-9FK" firstAttribute="top" secondItem="hgs-0a-Ad2" secondAttribute="bottom" constant="8" id="fVw-Af-Snp"/>
                             <constraint firstItem="cEL-c2-iwY" firstAttribute="leading" secondItem="CX8-Kb-WCh" secondAttribute="leadingMargin" id="lMg-5e-0vl"/>
                             <constraint firstItem="QCg-Hm-ryJ" firstAttribute="top" secondItem="vgf-Q9-9FK" secondAttribute="bottom" constant="60" id="pXo-zk-xi2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vgf-Q9-9FK" secondAttribute="trailing" id="pb3-yM-rlj"/>
                             <constraint firstItem="cEL-c2-iwY" firstAttribute="top" secondItem="vgf-Q9-9FK" secondAttribute="bottom" constant="10" id="ygO-1s-Xbm"/>
                         </constraints>
                     </view>
@@ -997,7 +998,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLn-tM-5ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5" y="1221"/>
+            <point key="canvasLocation" x="699" y="1183"/>
         </scene>
     </scenes>
 </document>

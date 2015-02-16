@@ -40,7 +40,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     NSLog(@"applicationDidEnterBackground");
-    
+    /*
     NSDate *date=[NSDate date];
     NSDictionary *dic=@{
                         @"type":[NSNumber numberWithInt:MessageQuitApp],
@@ -49,6 +49,7 @@
                         };
     NSData *sendData=[NSData encodeDataForSocket:dic];
     [self.asyncSocket writeData:sendData withTimeout:-1 tag:MessageQuitApp];
+    */
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {}

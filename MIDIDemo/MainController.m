@@ -194,7 +194,7 @@
 -(void)didReadData:(NSData *)jsonData {
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-    NSLog(@"MainController %@",dic);
+//    NSLog(@"MainController %@",dic);
     
     switch ([dic[@"type"] intValue]) {
         case MessageUserLogin:
