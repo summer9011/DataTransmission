@@ -495,14 +495,8 @@
 				6ECEBD371A3DD029005A9250 /* AppDelegate.mm */,
 				6ED6936E1A8F26D5001E602D /* MainController.h */,
 				6ED6936F1A8F26D5001E602D /* MainController.m */,
-				6ED693781A9032D3001E602D /* GroupListController.h */,
-				6ED693791A9032D3001E602D /* GroupListController.m */,
-				6ED79A441A918F6800E36BA2 /* GroupListCell.h */,
-				6ED79A451A918F6800E36BA2 /* GroupListCell.m */,
-				6ED6937E1A905337001E602D /* GroupInController.h */,
-				6ED6937F1A905337001E602D /* GroupInController.m */,
-				6ED693821A9071EF001E602D /* GroupInCell.h */,
-				6ED693831A9071EF001E602D /* GroupInCell.m */,
+				6ED79A471A91981E00E36BA2 /* GroupList */,
+				6ED79A481A91982E00E36BA2 /* GroupIn */,
 				6ED693851A908DAC001E602D /* GamingController.h */,
 				6ED693861A908DAD001E602D /* GamingController.m */,
 				6ED693811A906FAF001E602D /* 模型 */,
@@ -926,6 +920,28 @@
 				6ED6937C1A904134001E602D /* DZQGroup.m */,
 			);
 			name = "模型";
+			sourceTree = "<group>";
+		};
+		6ED79A471A91981E00E36BA2 /* GroupList */ = {
+			isa = PBXGroup;
+			children = (
+				6ED693781A9032D3001E602D /* GroupListController.h */,
+				6ED693791A9032D3001E602D /* GroupListController.m */,
+				6ED79A441A918F6800E36BA2 /* GroupListCell.h */,
+				6ED79A451A918F6800E36BA2 /* GroupListCell.m */,
+			);
+			name = GroupList;
+			sourceTree = "<group>";
+		};
+		6ED79A481A91982E00E36BA2 /* GroupIn */ = {
+			isa = PBXGroup;
+			children = (
+				6ED6937E1A905337001E602D /* GroupInController.h */,
+				6ED6937F1A905337001E602D /* GroupInController.m */,
+				6ED693821A9071EF001E602D /* GroupInCell.h */,
+				6ED693831A9071EF001E602D /* GroupInCell.m */,
+			);
+			name = GroupIn;
 			sourceTree = "<group>";
 		};
 		6EDC06E91A860CE400F91FB4 /* Socket数据封装 */ = {
