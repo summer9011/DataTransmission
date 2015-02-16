@@ -10,9 +10,9 @@
 
 @interface DZQGroup : NSObject
 
-@property (nonatomic,assign) int groupID;
-@property (nonatomic,retain) NSString *groupName;
-@property (nonatomic,assign) GroupStatus groupStatus;
-@property (nonatomic,assign) GroupType groupType;
+@property (nonatomic,assign) int groupID;                       //游戏组id
+@property (nonatomic,retain) NSString *groupName;               //游戏组名
+@property (nonatomic,assign) GroupStatus groupStatus;           //游戏组状态
+@property (nonatomic,assign) GroupType groupType;               //游戏组类型
 
 @end

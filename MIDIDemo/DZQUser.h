@@ -10,11 +10,11 @@
 
 @interface DZQUser : NSObject
 
-@property (nonatomic,assign) int userSessionID;
-@property (nonatomic,assign) int userID;
-@property (nonatomic,strong) NSString *userUUID;
-@property (nonatomic,strong) NSString *userName;
+@property (nonatomic,assign) int userSessionID;                 //用户session
+@property (nonatomic,assign) int userID;                        //用户数据库中id
+@property (nonatomic,strong) NSString *userUUID;                //用户唯一标识
+@property (nonatomic,strong) NSString *userName;                //用户名
 
-@property (nonatomic,assign) BOOL isHost;
+@property (nonatomic,assign) BOOL isHost;                       //是否为游戏房主
 
 @end

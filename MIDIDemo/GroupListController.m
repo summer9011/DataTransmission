@@ -8,6 +8,7 @@
 
 #import "GroupListController.h"
 #import "AppDelegate.h"
+#import "GroupListCell.h"
 
 #import "GroupInController.h"
 
@@ -40,7 +41,6 @@ static NSString *CellIdentifier=@"GroupCell";
     self.userNameLabel.text=[NSString stringWithFormat:@"用户名：%@",self.dele.user.userName];
     
     self.groupArr=[NSMutableArray array];
-    [self.groupTable registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.groupTable.tableFooterView=[[UIView alloc] init];
     
     self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshGroupTable) userInfo:nil repeats:YES];
@@ -125,26 +125,35 @@ static NSString *CellIdentifier=@"GroupCell";
     return self.groupArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
-    }
+- (GroupListCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    GroupListCell *cell=[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSDictionary *group=self.groupArr[indexPath.row];
     
+    cell.groupName.text=group[@"group_name"];
+    
+    switch ([group[@"group_type"] intValue]) {
+        case GroupTypeNormal:
+            cell.groupType.text=@"普通";
+            break;
+    }
+    
     switch ([group[@"group_status"] intValue]) {
         case GroupStatusCancel:
-            cell.textLabel.text=[NSString stringWithFormat:@"%@  (已取消)",group[@"group_name"]];
+            cell.groupStatus.text=@"已取消";
+            cell.groupStatus.textColor=[UIColor lightGrayColor];
             break;
         case GroupStatusReady:
-            cell.textLabel.text=[NSString stringWithFormat:@"%@  (可加入)",group[@"group_name"]];
+            cell.groupStatus.text=@"可加入";
+            cell.groupStatus.textColor=[UIColor greenColor];
             break;
         case GroupStatusStart:
-            cell.textLabel.text=[NSString stringWithFormat:@"%@  (进行中)",group[@"group_name"]];
+            cell.groupStatus.text=@"进行中";
+            cell.groupStatus.textColor=[UIColor redColor];
             break;
         case GroupStatusEnd:
-            cell.textLabel.text=[NSString stringWithFormat:@"%@  (已结束)",group[@"group_name"]];
+            cell.groupStatus.text=@"已结束";
+            cell.groupStatus.textColor=[UIColor redColor];
             break;
     }
     
